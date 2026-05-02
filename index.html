@@ -1,218 +1,225 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Target Marketing Language</title>
-<meta name="theme-color" content="#050505">
+<meta name="theme-color" content="#ffffff" />
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background:
-        radial-gradient(circle at top left, rgba(255,215,0,0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(0,112,255,0.20), transparent 35%),
-        #050505;
-    color: white;
-    min-height: 100vh;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(0, 102, 255, 0.12), transparent 30%),
+    linear-gradient(135deg, #f7f9fc, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  color: #111;
 }
 
-.login-box {
-    width: 100%;
-    max-width: 430px;
-    background: rgba(20,20,20,0.92);
-    border: 1px solid rgba(255,215,0,0.25);
-    border-radius: 24px;
-    padding: 32px 26px;
-    text-align: center;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-    position: relative;
-    overflow: hidden;
+.login-card {
+  width: 100%;
+  max-width: 430px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 32px 26px;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.10);
+  border: 1px solid #eeeeee;
+  text-align: center;
 }
 
-.login-box::before {
-    content: "EN • AR • FR • DE";
-    position: absolute;
-    top: 14px;
-    right: -42px;
-    background: gold;
-    color: #111;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 7px 48px;
-    transform: rotate(35deg);
+.logo-wrap {
+  width: 108px;
+  height: 108px;
+  margin: 0 auto 18px;
+  border-radius: 26px;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.18);
 }
 
-.logo {
-    width: 110px;
-    margin-bottom: 15px;
+.logo-wrap img {
+  width: 82px;
+  max-height: 82px;
+  object-fit: contain;
 }
 
 .badge {
-    display: inline-block;
-    background: rgba(255,215,0,0.12);
-    border: 1px solid rgba(255,215,0,0.35);
-    color: gold;
-    padding: 7px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    margin-bottom: 15px;
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff6cf;
+  color: #9a7400;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
 }
 
 h1 {
-    margin: 0;
-    color: gold;
-    font-size: 28px;
-    line-height: 1.2;
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #111;
+}
+
+.highlight {
+  color: #d4af37;
 }
 
 .subtitle {
-    color: #ddd;
-    margin: 12px 0 8px;
-    font-size: 15px;
+  color: #555;
+  font-size: 15px;
+  margin: 12px 0 22px;
+  line-height: 1.7;
 }
 
-.ar-text {
-    color: #aaa;
-    font-size: 14px;
-    margin-bottom: 24px;
+.lang-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
 }
 
-.language-icons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 22px;
+.lang {
+  background: #f3f5f8;
+  border: 1px solid #e5e7eb;
+  padding: 8px 11px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #333;
 }
 
-.language-icons span {
-    background: #222;
-    border: 1px solid #333;
-    padding: 8px 10px;
-    border-radius: 12px;
-    font-size: 13px;
+.form {
+  text-align: left;
+  direction: ltr;
 }
 
 input {
-    width: 100%;
-    padding: 15px;
-    margin: 9px 0;
-    border: 1px solid #333;
-    border-radius: 14px;
-    outline: none;
-    font-size: 16px;
-    background: #101010;
-    color: white;
+  width: 100%;
+  padding: 15px 16px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  font-size: 16px;
+  outline: none;
 }
 
 input:focus {
-    border-color: gold;
-    box-shadow: 0 0 0 3px rgba(255,215,0,0.12);
+  border-color: #d4af37;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.12);
 }
 
 button {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #ffd700, #d4af37);
-    border: none;
-    border-radius: 14px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 12px;
-    color: #111;
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #111, #2a2a2a);
+  color: #ffd95a;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 4px;
 }
 
 button:hover {
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .error {
-    color: #ff4d4d;
-    margin-top: 12px;
-    font-size: 14px;
+  color: #d60000;
+  margin-top: 12px;
+  font-size: 14px;
+  min-height: 20px;
 }
 
 .footer {
-    margin-top: 22px;
-    color: #777;
-    font-size: 12px;
+  margin-top: 18px;
+  font-size: 12px;
+  color: #999;
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 14px;
-    }
+  .login-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
 
-    .login-box {
-        padding: 28px 20px;
-        border-radius: 20px;
-    }
+  h1 {
+    font-size: 24px;
+  }
 
-    .logo {
-        width: 92px;
-    }
+  .logo-wrap {
+    width: 92px;
+    height: 92px;
+    border-radius: 22px;
+  }
 
-    h1 {
-        font-size: 23px;
-    }
-
-    input, button {
-        font-size: 15px;
-        padding: 13px;
-    }
+  .logo-wrap img {
+    width: 70px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="login-box">
-    <img src="logo.png" alt="Target Marketing Logo" class="logo">
+<div class="login-card">
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Target Marketing Logo">
+  </div>
 
-    <div class="badge">Language Learning Portal</div>
+  <div class="badge">منصة تعلم اللغات</div>
 
-    <h1>Target Marketing Language</h1>
+  <h1>
+    Target Marketing <span class="highlight">Language</span>
+  </h1>
 
-    <div class="subtitle">Learn English the Smart Way</div>
-    <div class="ar-text">ابدأ رحلتك في تعلم اللغات بطريقة عملية ومنظمة</div>
+  <div class="subtitle">
+    ابدأ تعلم الإنجليزية بطريقة عملية ومنظمة<br>
+    وبعدها نضيف لغات جديدة داخل نفس المنصة
+  </div>
 
-    <div class="language-icons">
-        <span>🇬🇧 English</span>
-        <span>🇩🇪 German</span>
-        <span>🇫🇷 French</span>
-    </div>
+  <div class="lang-row">
+    <div class="lang">🇬🇧 English</div>
+    <div class="lang">🇩🇪 German قريبًا</div>
+    <div class="lang">🇫🇷 French قريبًا</div>
+  </div>
 
+  <div class="form">
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login to Platform</button>
+  </div>
 
-    <button onclick="login()">دخول المنصة</button>
-
-    <div class="error" id="error"></div>
-
-    <div class="footer">© Target Marketing Academy</div>
+  <div class="error" id="error"></div>
+  <div class="footer">© Target Marketing Academy</div>
 </div>
 
 <script>
 function login() {
-    const user = document.getElementById("username").value.trim();
-    const pass = document.getElementById("password").value.trim();
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-    if (user === "student" && pass === "target2026") {
-        localStorage.setItem("loggedIn", "true");
-        window.location.href = "dashboard.html";
-    } else {
-        document.getElementById("error").innerText = "بيانات الدخول غير صحيحة";
-    }
+  if (user === "student" && pass === "target2026") {
+    localStorage.setItem("loggedIn", "true");
+    window.location.href = "dashboard.html";
+  } else {
+    document.getElementById("error").innerText = "بيانات الدخول غير صحيحة";
+  }
 }
 </script>
 
