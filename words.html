@@ -39,7 +39,30 @@ body{
 .tag{display:inline-block;margin-top:8px;color:#ffd700;font-size:12px;border:1px solid rgba(212,175,55,.25);padding:5px 9px;border-radius:999px}
 .pron{margin-top:8px;color:#aaa}
 .meaning{margin-top:6px;color:#fff;font-size:16px}
-.example{direction:ltr;text-align:left;margin-top:10px;color:#bbb;font-size:14px;line-height:1.6}
+
+.example{
+  margin-top:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:10px;
+}
+
+.example-en{
+  direction:ltr;
+  text-align:left;
+  color:#ddd;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.example-ar{
+  direction:rtl;
+  text-align:right;
+  color:#d4af37;
+  margin-top:7px;
+  font-size:14px;
+  line-height:1.7;
+}
+
 .empty{text-align:center;color:#777;padding:30px}
 </style>
 </head>
@@ -115,6 +138,7 @@ const words = [
 {id:29,cat:"Basic Verbs",w:"Listen",p:"ليسن",m:"يستمع",e:"Listen carefully before you answer.",ar:"استمع جيدًا قبل أن تجيب."},
 {id:30,cat:"Basic Verbs",w:"Ask",p:"آسك",m:"يسأل",e:"Ask smart questions.",ar:"اطرح أسئلة ذكية."}
 ];
+
 let currentCat="All";
 
 function savedList(){
@@ -140,7 +164,13 @@ function render(){
 
   const filtered=words.filter(x=>{
     const byCat=currentCat==="All"||x.cat===currentCat;
-    const bySearch=x.w.toLowerCase().includes(q)||x.m.includes(q)||x.cat.toLowerCase().includes(q);
+    const bySearch=
+      x.w.toLowerCase().includes(q) ||
+      x.m.includes(q) ||
+      x.cat.toLowerCase().includes(q) ||
+      (x.e && x.e.toLowerCase().includes(q)) ||
+      (x.ar && x.ar.includes(q));
+
     return byCat&&bySearch;
   });
 
@@ -153,10 +183,15 @@ function render(){
         </div>
         <div class="save ${saved.includes(x.id)?'saved':''}" onclick="toggleSave(${x.id})">★</div>
       </div>
+
       <div class="tag">${x.cat}</div>
       <div class="pron">النطق: ${x.p}</div>
       <div class="meaning">المعنى: ${x.m}</div>
-      <div class="example">${x.e}</div>
+
+      <div class="example">
+        <div class="example-en">${x.e}</div>
+        <div class="example-ar">${x.ar || ""}</div>
+      </div>
     </div>
   `).join(""):`<div class="empty">لا توجد نتائج</div>`;
 
