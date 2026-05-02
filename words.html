@@ -6,43 +6,146 @@
 <title>645 Words - Target Marketing Language</title>
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:Arial;background:#050505;color:#fff;padding:16px
-}
-.app{max-width:560px;margin:auto}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.back{background:#111;border:1px solid #333;color:#fff;padding:10px 14px;border-radius:14px;cursor:pointer}
-.title{direction:ltr;text-align:left}
-.title h1{margin:0;color:#ffd700;font-size:22px}
-.title p{margin:6px 0 0;color:#aaa;font-size:13px}
+* { box-sizing: border-box; }
 
-.progress{background:#111;border:1px solid #333;border-radius:16px;padding:12px;margin-bottom:12px}
-.progress-text{display:flex;justify-content:space-between;color:#ddd;font-size:13px;margin-bottom:8px}
-.bar{height:8px;background:#222;border-radius:999px;overflow:hidden}
-.bar-fill{height:100%;width:0;background:linear-gradient(135deg,#ffd700,#d4af37)}
-
-.search input{
-  width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#111;color:#fff;margin-bottom:10px
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#f7f9fc,#ffffff);
+  color: #111;
+  padding: 16px;
 }
 
-.filters{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}
-.filters button{
-  background:#111;border:1px solid #333;color:#ccc;padding:8px 10px;border-radius:999px;cursor:pointer;font-size:12px
-}
-.filters .active{background:gold;color:#000;font-weight:bold}
+.app { max-width: 560px; margin: auto; }
 
-.word-card{
-  background:#111;border:1px solid #222;border-radius:16px;padding:14px;margin-bottom:10px
+/* Header */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
-.word-top{display:flex;justify-content:space-between;align-items:center}
-.word{direction:ltr;font-size:18px;font-weight:bold}
-.id{color:gold;font-size:12px}
-.save{cursor:pointer;font-size:18px}
-.saved{color:gold}
-.tag{font-size:11px;color:gold;margin-top:5px}
-.meaning{color:#ccc;margin-top:6px}
-.example{direction:ltr;margin-top:8px;font-size:13px;color:#aaa}
+
+.back {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.title { direction: ltr; }
+
+.title h1 {
+  margin: 0;
+  color: #111;
+}
+
+.title p {
+  margin: 6px 0 0;
+  color: #666;
+}
+
+/* Progress */
+.progress {
+  background: white;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+}
+
+.bar {
+  height: 8px;
+  background: #eee;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#ffd700,#ffb700);
+}
+
+/* Search */
+.search input {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.filters .active {
+  background: black;
+  color: white;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.word {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.id {
+  font-size: 12px;
+  color: #999;
+}
+
+.save {
+  cursor: pointer;
+}
+
+.saved {
+  color: gold;
+}
+
+.meaning {
+  margin-top: 6px;
+  color: #555;
+}
+
+.example {
+  margin-top: 8px;
+  color: #777;
+  font-size: 13px;
+}
+
+.tag {
+  font-size: 11px;
+  color: #999;
+  margin-top: 6px;
+}
 </style>
 </head>
 
@@ -59,11 +162,8 @@ body{
 </div>
 
 <div class="progress">
-  <div class="progress-text">
-    <span>Progress</span>
-    <span id="pText">0%</span>
-  </div>
-  <div class="bar"><div class="bar-fill" id="pBar"></div></div>
+  <div id="pText">0%</div>
+  <div class="bar"><div id="pBar" class="fill"></div></div>
 </div>
 
 <div class="search">
@@ -71,6 +171,7 @@ body{
 </div>
 
 <div class="filters" id="filters"></div>
+
 <div id="list"></div>
 
 </div>
@@ -80,172 +181,75 @@ body{
 const words = [
 { id:1,cat:"Daily Life",w:"Time",m:"وقت",e:"Time is important."},
 { id:2,cat:"Daily Life",w:"Day",m:"يوم",e:"Have a great day."},
-{ id:3,cat:"Daily Life",w:"Week",m:"أسبوع",e:"This week is busy."},
-{ id:4,cat:"Daily Life",w:"Month",m:"شهر",e:"This month is good."},
-{ id:5,cat:"Daily Life",w:"Year",m:"سنة",e:"This year is better."},
-{ id:6,cat:"Daily Life",w:"Home",m:"منزل",e:"I am home."},
-{ id:7,cat:"Daily Life",w:"Food",m:"طعام",e:"The food is good."},
-{ id:8,cat:"Daily Life",w:"Water",m:"ماء",e:"Drink water."},
-{ id:9,cat:"Daily Life",w:"Friend",m:"صديق",e:"He is my friend."},
-{ id:10,cat:"Daily Life",w:"Family",m:"عائلة",e:"My family helps me."},
-
-{ id:11,cat:"Basic Verbs",w:"Work",m:"يعمل",e:"I work daily."},
-{ id:12,cat:"Basic Verbs",w:"Learn",m:"يتعلم",e:"I learn English."},
-{ id:13,cat:"Basic Verbs",w:"Build",m:"يبني",e:"Build your future."},
-{ id:14,cat:"Basic Verbs",w:"Create",m:"ينشئ",e:"Create content."},
-{ id:15,cat:"Basic Verbs",w:"Grow",m:"ينمو",e:"Grow your skills."},
-{ id:16,cat:"Basic Verbs",w:"Start",m:"يبدأ",e:"Start now."},
-{ id:17,cat:"Basic Verbs",w:"Stop",m:"يتوقف",e:"Stop wasting time."},
-{ id:18,cat:"Basic Verbs",w:"Try",m:"يحاول",e:"Try again."},
-{ id:19,cat:"Basic Verbs",w:"Win",m:"يفوز",e:"You can win."},
-{ id:20,cat:"Basic Verbs",w:"Read",m:"يقرأ",e:"Read daily."},
-
-{ id:21,cat:"Business",w:"Market",m:"سوق",e:"The market grows."},
-{ id:22,cat:"Business",w:"Customer",m:"عميل",e:"Customer first."},
-{ id:23,cat:"Business",w:"Partner",m:"شريك",e:"He is my partner."},
-{ id:24,cat:"Business",w:"Company",m:"شركة",e:"The company is big."},
-{ id:25,cat:"Business",w:"Product",m:"منتج",e:"This product works."},
-{ id:26,cat:"Business",w:"Service",m:"خدمة",e:"Good service matters."},
-{ id:27,cat:"Business",w:"Price",m:"سعر",e:"Check the price."},
-{ id:28,cat:"Business",w:"Value",m:"قيمة",e:"Give value."},
-{ id:29,cat:"Business",w:"Deal",m:"صفقة",e:"Close the deal."},
-{ id:30,cat:"Business",w:"Client",m:"عميل",e:"Client is happy."},
-
-{ id:31,cat:"Marketing",w:"Brand",m:"علامة",e:"Build brand."},
-{ id:32,cat:"Marketing",w:"Content",m:"محتوى",e:"Post content."},
-{ id:33,cat:"Marketing",w:"Ad",m:"إعلان",e:"Run ads."},
-{ id:34,cat:"Marketing",w:"Reach",m:"وصول",e:"Reach people."},
-{ id:35,cat:"Marketing",w:"Audience",m:"جمهور",e:"Know audience."},
-{ id:36,cat:"Marketing",w:"Click",m:"نقرة",e:"Click here."},
-{ id:37,cat:"Marketing",w:"Traffic",m:"زيارات",e:"Get traffic."},
-{ id:38,cat:"Marketing",w:"Lead",m:"عميل محتمل",e:"Get leads."},
-{ id:39,cat:"Marketing",w:"Sale",m:"بيع",e:"Make sales."},
-{ id:40,cat:"Marketing",w:"Funnel",m:"قمع",e:"Build funnel."},
-
-{ id:41,cat:"Money",w:"Money",m:"مال",e:"Money helps."},
-{ id:42,cat:"Money",w:"Profit",m:"ربح",e:"Profit is good."},
-{ id:43,cat:"Money",w:"Loss",m:"خسارة",e:"Avoid loss."},
-{ id:44,cat:"Money",w:"Trade",m:"تداول",e:"I trade daily."},
-{ id:45,cat:"Money",w:"Capital",m:"رأس مال",e:"Protect capital."},
-{ id:46,cat:"Money",w:"Risk",m:"مخاطرة",e:"Manage risk."},
-{ id:47,cat:"Money",w:"Reward",m:"عائد",e:"High reward."},
-{ id:48,cat:"Money",w:"Balance",m:"رصيد",e:"Check balance."},
-{ id:49,cat:"Money",w:"Account",m:"حساب",e:"Open account."},
-{ id:50,cat:"Money",w:"Withdraw",m:"سحب",e:"Withdraw money."},
-
-{ id:51,cat:"Travel",w:"Airport",m:"مطار",e:"At airport."},
-{ id:52,cat:"Travel",w:"Ticket",m:"تذكرة",e:"Book ticket."},
-{ id:53,cat:"Travel",w:"Flight",m:"رحلة",e:"Flight ready."},
-{ id:54,cat:"Travel",w:"Hotel",m:"فندق",e:"Nice hotel."},
-{ id:55,cat:"Travel",w:"Passport",m:"جواز",e:"Bring passport."},
-{ id:56,cat:"Travel",w:"Bag",m:"حقيبة",e:"Carry bag."},
-{ id:57,cat:"Travel",w:"Trip",m:"رحلة",e:"Good trip."},
-{ id:58,cat:"Travel",w:"Map",m:"خريطة",e:"Use map."},
-{ id:59,cat:"Travel",w:"Taxi",m:"تاكسي",e:"Take taxi."},
-{ id:60,cat:"Travel",w:"Train",m:"قطار",e:"Take train."},
-
-{ id:61,cat:"Self Dev",w:"Success",m:"نجاح",e:"Success needs work."},
-{ id:62,cat:"Self Dev",w:"Goal",m:"هدف",e:"Set goal."},
-{ id:63,cat:"Self Dev",w:"Focus",m:"تركيز",e:"Stay focused."},
-{ id:64,cat:"Self Dev",w:"Discipline",m:"انضباط",e:"Discipline wins."},
-{ id:65,cat:"Self Dev",w:"Growth",m:"نمو",e:"Growth takes time."},
-{ id:66,cat:"Self Dev",w:"Mindset",m:"عقلية",e:"Strong mindset."},
-{ id:67,cat:"Self Dev",w:"Habit",m:"عادة",e:"Build habits."},
-{ id:68,cat:"Self Dev",w:"Energy",m:"طاقة",e:"High energy."},
-{ id:69,cat:"Self Dev",w:"Vision",m:"رؤية",e:"Clear vision."},
-{ id:70,cat:"Self Dev",w:"Action",m:"فعل",e:"Take action."},
-
-{ id:71,cat:"Tech",w:"Internet",m:"إنترنت",e:"Use internet."},
-{ id:72,cat:"Tech",w:"Website",m:"موقع",e:"Build website."},
-{ id:73,cat:"Tech",w:"App",m:"تطبيق",e:"Open app."},
-{ id:74,cat:"Tech",w:"Data",m:"بيانات",e:"Check data."},
-{ id:75,cat:"Tech",w:"System",m:"نظام",e:"Use system."},
-{ id:76,cat:"Tech",w:"Login",m:"تسجيل",e:"Login now."},
-{ id:77,cat:"Tech",w:"Password",m:"كلمة مرور",e:"Enter password."},
-{ id:78,cat:"Tech",w:"Account",m:"حساب",e:"Create account."},
-{ id:79,cat:"Tech",w:"User",m:"مستخدم",e:"User login."},
-{ id:80,cat:"Tech",w:"Update",m:"تحديث",e:"Update app."},
-
-{ id:81,cat:"Extra",w:"Fast",m:"سريع",e:"Work fast."},
-{ id:82,cat:"Extra",w:"Slow",m:"بطيء",e:"Too slow."},
-{ id:83,cat:"Extra",w:"Big",m:"كبير",e:"Big goal."},
-{ id:84,cat:"Extra",w:"Small",m:"صغير",e:"Small step."},
-{ id:85,cat:"Extra",w:"New",m:"جديد",e:"New idea."},
-{ id:86,cat:"Extra",w:"Old",m:"قديم",e:"Old system."},
-{ id:87,cat:"Extra",w:"Easy",m:"سهل",e:"Easy way."},
-{ id:88,cat:"Extra",w:"Hard",m:"صعب",e:"Hard work."},
-{ id:89,cat:"Extra",w:"Right",m:"صحيح",e:"Right choice."},
-{ id:90,cat:"Extra",w:"Wrong",m:"خطأ",e:"Wrong move."},
-
-{ id:91,cat:"Extra",w:"Open",m:"يفتح",e:"Open door."},
-{ id:92,cat:"Extra",w:"Close",m:"يغلق",e:"Close door."},
-{ id:93,cat:"Extra",w:"Push",m:"يدفع",e:"Push forward."},
-{ id:94,cat:"Extra",w:"Pull",m:"يسحب",e:"Pull back."},
-{ id:95,cat:"Extra",w:"Move",m:"يتحرك",e:"Move fast."},
-{ id:96,cat:"Extra",w:"Stop",m:"يتوقف",e:"Stop now."},
-{ id:97,cat:"Extra",w:"Think",m:"يفكر",e:"Think smart."},
-{ id:98,cat:"Extra",w:"Plan",m:"يخطط",e:"Plan ahead."},
-{ id:99,cat:"Extra",w:"Do",m:"يفعل",e:"Do it now."},
-{ id:100,cat:"Extra",w:"Make",m:"يصنع",e:"Make money."}
+{ id:3,cat:"Daily Life",w:"Home",m:"منزل",e:"I am home."},
+{ id:4,cat:"Basic Verbs",w:"Work",m:"عمل",e:"I work daily."},
+{ id:5,cat:"Business",w:"Market",m:"سوق",e:"The market grows."},
+{ id:6,cat:"Marketing",w:"Brand",m:"علامة",e:"Build brand."},
+{ id:7,cat:"Money",w:"Money",m:"مال",e:"Money is a tool."},
+{ id:8,cat:"Travel",w:"Airport",m:"مطار",e:"At airport."},
+{ id:9,cat:"Self Dev",w:"Success",m:"نجاح",e:"Success needs work."},
+{ id:10,cat:"Tech",w:"Internet",m:"إنترنت",e:"Use internet."}
 ];
 
 let cat="All";
 
-function getCats(){
+function cats(){
   let c=["All"];
   words.forEach(w=>{ if(!c.includes(w.cat)) c.push(w.cat); });
   return c;
 }
 
-function drawFilters(){
+function draw(){
   filters.innerHTML="";
-  getCats().forEach(c=>{
+  cats().forEach(c=>{
     filters.innerHTML+=`<button class="${cat==c?'active':''}" onclick="setCat('${c}')">${c}</button>`;
   });
 }
 
-function setCat(c){ cat=c; drawFilters(); render(); }
+function setCat(c){ cat=c; draw(); render(); }
 
 function render(){
   let v=search.value.toLowerCase();
   let saved=JSON.parse(localStorage.getItem("saved")||"[]");
+
   list.innerHTML="";
 
-  let filtered = words.filter(w=>
-    (cat=="All"||w.cat==cat) &&
+  let f=words.filter(w=>
+    (cat=="All"||w.cat==cat)&&
     (w.w.toLowerCase().includes(v)||w.m.includes(v))
   );
 
-  filtered.forEach(w=>{
+  f.forEach(w=>{
     list.innerHTML+=`
-    <div class="word-card">
-      <div class="word-top">
+    <div class="card">
+      <div class="top-row">
         <div>
           <div class="id">#${w.id}</div>
           <div class="word">${w.w}</div>
         </div>
         <div class="save ${saved.includes(w.id)?'saved':''}" onclick="toggle(${w.id},this)">★</div>
       </div>
+
       <div class="tag">${w.cat}</div>
       <div class="meaning">${w.m}</div>
       <div class="example">${w.e}</div>
     </div>`;
   });
 
-  let percent = Math.round((saved.length / words.length) * 100);
-  pText.innerText = percent + "%";
-  pBar.style.width = percent + "%";
+  let p=Math.round((saved.length/words.length)*100);
+  pText.innerText=p+"%";
+  pBar.style.width=p+"%";
 }
 
 function toggle(id,el){
   let s=JSON.parse(localStorage.getItem("saved")||"[]");
-  if(s.includes(id)){ s=s.filter(x=>x!=id); el.classList.remove("saved"); }
-  else{ s.push(id); el.classList.add("saved"); }
+  if(s.includes(id)){s=s.filter(x=>x!=id);el.classList.remove("saved");}
+  else{s.push(id);el.classList.add("saved");}
   localStorage.setItem("saved",JSON.stringify(s));
   render();
 }
 
-drawFilters();
+draw();
 render();
 
 </script>
