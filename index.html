@@ -3,205 +3,214 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Target Marketing Language</title>
-<meta name="theme-color" content="#050505" />
+<title>Dashboard - Target Marketing Language</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, sans-serif;
   background:
-    radial-gradient(circle at top, rgba(212,175,55,0.15), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(0,80,180,0.15), transparent 40%),
+    radial-gradient(circle at top, rgba(212,175,55,0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(0,80,180,0.18), transparent 38%),
     #050505;
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 18px;
-  overflow-x: hidden;
 }
 
-/* Intro Screen */
-.intro {
-  position: fixed;
-  inset: 0;
-  background: #050505;
+.app {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 22px;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: #111;
+  object-fit: contain;
+  padding: 6px;
+  border: 1px solid rgba(212,175,55,0.25);
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #fff;
+}
+
+.header-text p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.welcome-card {
+  background: linear-gradient(180deg, #1a1a1a, #0d0d0d);
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+  margin-bottom: 18px;
+}
+
+.welcome-card h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: #d4af37;
+}
+
+.welcome-card p {
+  margin: 0;
+  color: #ccc;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.language-card {
+  background: linear-gradient(180deg, #171717, #0b0b0b);
+  border: 1px solid rgba(212,175,55,0.28);
+  border-radius: 28px;
+  padding: 20px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+}
+
+.language-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.language-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  direction: ltr;
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffd700;
+}
+
+.status {
+  background: rgba(212,175,55,0.12);
+  color: #d4af37;
+  border: 1px solid rgba(212,175,55,0.35);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.modules {
+  display: grid;
+  gap: 12px;
+}
+
+.module {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 20px;
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.module:hover {
+  transform: translateY(-2px);
+  border-color: #d4af37;
+  background: #151515;
+}
+
+.module-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  animation: introFadeOut 0.8s ease forwards;
-  animation-delay: 1.8s;
+  background: rgba(212,175,55,0.12);
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
-.intro img {
-  width: 260px;
-  max-width: 75%;
-  animation: introLogo 1.4s ease forwards;
-  filter:
-    drop-shadow(0 30px 50px rgba(0,0,0,0.9))
-    drop-shadow(0 0 35px rgba(212,175,55,0.35));
+.module-content {
+  flex: 1;
 }
 
-@keyframes introLogo {
-  0% {
-    opacity: 0;
-    transform: scale(0.75) translateY(20px);
-  }
-  45% {
-    opacity: 1;
-    transform: scale(1.05) translateY(0);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes introFadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* Login Card */
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  background: linear-gradient(180deg, #171717, #0d0d0d);
-  border-radius: 28px;
-  padding: 34px 24px 26px;
-  border: 1px solid rgba(212,175,55,0.25);
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.65),
-    0 0 30px rgba(212,175,55,0.08);
-  text-align: center;
-  animation: cardEnter 0.8s ease forwards;
-  animation-delay: 2.1s;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-@keyframes cardEnter {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.logo-wrap {
-  width: 100%;
-  margin: 0 auto 10px;
-  display: flex;
-  justify-content: center;
-}
-
-.logo-wrap img {
-  width: 280px;
-  max-width: 80%;
-  height: auto;
-  animation: logoFloat 4s ease-in-out infinite;
-  filter:
-    drop-shadow(0 25px 45px rgba(0,0,0,0.7))
-    drop-shadow(0 0 25px rgba(212,175,55,0.2));
-}
-
-@keyframes logoFloat {
-  0% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-7px) scale(1.025);
-  }
-  100% {
-    transform: translateY(0px) scale(1);
-  }
-}
-
-.subtitle {
-  color: #d8d8d8;
-  font-size: 15px;
-  margin: 10px 0 28px;
-  line-height: 1.7;
-}
-
-.form {
-  text-align: left;
+.module-content h3 {
+  margin: 0;
+  font-size: 18px;
   direction: ltr;
+  text-align: right;
 }
 
-input {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 12px;
-  border-radius: 14px;
-  border: 1px solid #333;
-  background: #111;
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-}
-
-input::placeholder {
-  color: #888;
-}
-
-input:focus {
-  border-color: #d4af37;
-  box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
-}
-
-button {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #ffd700, #d4af37);
-  color: #111;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  transform: translateY(-1px);
-}
-
-.error {
-  color: #ff4d4d;
-  margin-top: 10px;
+.module-content p {
+  margin: 6px 0 0;
+  color: #aaa;
   font-size: 13px;
 }
 
-.footer {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #777;
+.arrow {
+  color: #d4af37;
+  font-size: 22px;
+  direction: ltr;
+}
+
+.coming {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.logout {
+  margin: 22px 0 10px;
+  text-align: center;
+}
+
+.logout button {
+  background: #202020;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 13px 22px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout button:hover {
+  background: #2a2a2a;
 }
 
 @media (max-width: 480px) {
-  .login-card {
-    padding: 26px 18px;
+  body { padding: 14px; }
+
+  .header-text h1 { font-size: 19px; }
+
+  .welcome-card h2 { font-size: 20px; }
+
+  .language-title { font-size: 21px; }
+
+  .module {
+    padding: 14px;
+    border-radius: 18px;
   }
 
-  .logo-wrap img {
-    width: 240px;
-  }
-
-  .intro img {
-    width: 230px;
-  }
-
-  .subtitle {
-    font-size: 14px;
+  .module-content h3 {
+    font-size: 16px;
   }
 }
 </style>
@@ -209,43 +218,73 @@ button:hover {
 
 <body>
 
-<div class="intro">
-  <img src="logo.png" alt="Target Marketing Logo">
-</div>
+<div class="app">
 
-<div class="login-card">
-
-  <div class="logo-wrap">
-    <img src="logo.png" alt="Target Marketing Logo">
+  <div class="header">
+    <img src="logo.png" class="logo" alt="Target Marketing Logo">
+    <div class="header-text">
+      <h1>Target Marketing Language</h1>
+      <p>منصة تعلم اللغات بطريقة عملية ومنظمة</p>
+    </div>
   </div>
 
-  <div class="subtitle">
-    ابدأ تعلم اللغات بطريقة عملية ومنظمة
+  <div class="welcome-card">
+    <h2>أهلاً بك 👋</h2>
+    <p>
+      اختر اللغة وابدأ رحلتك التعليمية. البداية مع اللغة الإنجليزية،
+      وبعدها سيتم إضافة لغات جديدة داخل نفس المنصة.
+    </p>
   </div>
 
-  <div class="form">
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">دخول المنصة</button>
+  <div class="language-card">
+
+    <div class="language-top">
+      <div class="language-title">🇬🇧 English (US)</div>
+      <div class="status">Active</div>
+    </div>
+
+    <div class="modules">
+
+      <div class="module" onclick="goWords()">
+        <div class="module-icon">📘</div>
+        <div class="module-content">
+          <h3>645 Essential Words</h3>
+          <p>تعلم أهم الكلمات الأساسية بطريقة منظمة</p>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="module coming">
+        <div class="module-icon">💬</div>
+        <div class="module-content">
+          <h3>5000 Common Phrases</h3>
+          <p>قريبًا — جمل عملية للمحادثات اليومية</p>
+        </div>
+        <div class="arrow">🔒</div>
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="error" id="error"></div>
-
-  <div class="footer">© Target Marketing Academy</div>
+  <div class="logout">
+    <button onclick="logout()">تسجيل الخروج</button>
+  </div>
 
 </div>
 
 <script>
-function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "index.html";
+}
 
-  if (user === "student" && pass === "target2026") {
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "dashboard.html";
-  } else {
-    document.getElementById("error").innerText = "بيانات الدخول غير صحيحة";
-  }
+function goWords() {
+  window.location.href = "words.html";
+}
+
+function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "index.html";
 }
 </script>
 
