@@ -3,149 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>645 Words - Target Marketing Language</title>
+<title>645 Words</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial;
-  background: linear-gradient(135deg,#f7f9fc,#ffffff);
-  color: #111;
-  padding: 16px;
+body{
+margin:0;
+font-family:Arial;
+background:#000;
+color:#fff;
+padding:15px;
 }
 
-.app { max-width: 560px; margin: auto; }
+.app{max-width:550px;margin:auto}
 
-/* Header */
-.top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
+/* HEADER */
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
 }
 
-.back {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 10px 14px;
-  border-radius: 14px;
-  cursor: pointer;
+.back{
+background:#111;
+padding:10px 15px;
+border-radius:12px;
+cursor:pointer;
 }
 
-.title { direction: ltr; }
-
-.title h1 {
-  margin: 0;
-  color: #111;
+.title{
+direction:ltr;
 }
 
-.title p {
-  margin: 6px 0 0;
-  color: #666;
+.title h1{
+margin:0;
+color:#ffd700;
 }
 
-/* Progress */
-.progress {
-  background: white;
-  border-radius: 16px;
-  padding: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  margin-bottom: 15px;
+.title p{
+margin:5px 0 0;
+color:#aaa;
 }
 
-.bar {
-  height: 8px;
-  background: #eee;
-  border-radius: 999px;
-  overflow: hidden;
+/* PROGRESS */
+.progress{
+background:#111;
+padding:12px;
+border-radius:15px;
+margin-bottom:15px;
 }
 
-.fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg,#ffd700,#ffb700);
+.bar{
+height:8px;
+background:#222;
+border-radius:10px;
+overflow:hidden;
 }
 
-/* Search */
-.search input {
-  width: 100%;
-  padding: 13px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+.fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#ffd700,#ffb700);
 }
 
-/* Filters */
-.filters {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  margin-bottom: 12px;
+/* SEARCH */
+.search input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #333;
+background:#111;
+color:#fff;
+margin-bottom:10px;
 }
 
-.filters button {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 8px 12px;
-  border-radius: 999px;
-  cursor: pointer;
+/* FILTER */
+.filters{
+display:flex;
+gap:6px;
+overflow-x:auto;
+margin-bottom:10px;
 }
 
-.filters .active {
-  background: black;
-  color: white;
+.filters button{
+background:#111;
+border:1px solid #333;
+color:#ccc;
+padding:7px 10px;
+border-radius:20px;
+cursor:pointer;
 }
 
-/* Cards */
-.card {
-  background: white;
-  border-radius: 18px;
-  padding: 14px;
-  margin-bottom: 10px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+.filters .active{
+background:#ffd700;
+color:#000;
 }
 
-.top-row {
-  display: flex;
-  justify-content: space-between;
+/* CARD */
+.card{
+background:#111;
+border-radius:15px;
+padding:15px;
+margin-bottom:10px;
+border:1px solid #222;
 }
 
-.word {
-  font-size: 20px;
-  font-weight: bold;
+.row{
+display:flex;
+justify-content:space-between;
 }
 
-.id {
-  font-size: 12px;
-  color: #999;
+.word{
+font-size:20px;
+direction:ltr;
+font-weight:bold;
 }
 
-.save {
-  cursor: pointer;
+.id{color:#ffd700;font-size:12px}
+
+.meaning{color:#ccc;margin-top:6px}
+
+.example{
+direction:ltr;
+margin-top:8px;
+font-size:13px;
+color:#aaa;
 }
 
-.saved {
-  color: gold;
+.tag{
+font-size:11px;
+color:#ffd700;
+margin-top:5px;
 }
 
-.meaning {
-  margin-top: 6px;
-  color: #555;
+.save{
+cursor:pointer;
+font-size:18px;
 }
 
-.example {
-  margin-top: 8px;
-  color: #777;
-  font-size: 13px;
-}
+.saved{color:#ffd700}
 
-.tag {
-  font-size: 11px;
-  color: #999;
-  margin-top: 6px;
-}
 </style>
 </head>
 
@@ -154,20 +151,20 @@ body {
 <div class="app">
 
 <div class="top">
-  <div class="back" onclick="location.href='dashboard.html'">رجوع</div>
-  <div class="title">
-    <h1>645 Words</h1>
-    <p>American System</p>
-  </div>
+<div class="back" onclick="location.href='dashboard.html'">رجوع</div>
+<div class="title">
+<h1>645 Words</h1>
+<p>American System</p>
+</div>
 </div>
 
 <div class="progress">
-  <div id="pText">0%</div>
-  <div class="bar"><div id="pBar" class="fill"></div></div>
+<div id="pText">0%</div>
+<div class="bar"><div id="pBar" class="fill"></div></div>
 </div>
 
 <div class="search">
-  <input id="search" placeholder="Search..." onkeyup="render()">
+<input id="search" placeholder="Search..." onkeyup="render()">
 </div>
 
 <div class="filters" id="filters"></div>
@@ -178,75 +175,88 @@ body {
 
 <script>
 
-const words = [
-{ id:1,cat:"Daily Life",w:"Time",m:"وقت",e:"Time is important."},
-{ id:2,cat:"Daily Life",w:"Day",m:"يوم",e:"Have a great day."},
-{ id:3,cat:"Daily Life",w:"Home",m:"منزل",e:"I am home."},
-{ id:4,cat:"Basic Verbs",w:"Work",m:"عمل",e:"I work daily."},
-{ id:5,cat:"Business",w:"Market",m:"سوق",e:"The market grows."},
-{ id:6,cat:"Marketing",w:"Brand",m:"علامة",e:"Build brand."},
-{ id:7,cat:"Money",w:"Money",m:"مال",e:"Money is a tool."},
-{ id:8,cat:"Travel",w:"Airport",m:"مطار",e:"At airport."},
-{ id:9,cat:"Self Dev",w:"Success",m:"نجاح",e:"Success needs work."},
-{ id:10,cat:"Tech",w:"Internet",m:"إنترنت",e:"Use internet."}
-];
+const words = [];
+
+const catsList=["Daily Life","Basic Verbs","Business","Marketing","Money","Travel","Self Dev","Tech","Extra"];
+
+for(let i=1;i<=100;i++){
+words.push({
+id:i,
+cat:catsList[i%catsList.length],
+w:"Word "+i,
+m:"معنى الكلمة "+i,
+e:"Example sentence "+i
+});
+}
 
 let cat="All";
 
-function cats(){
-  let c=["All"];
-  words.forEach(w=>{ if(!c.includes(w.cat)) c.push(w.cat); });
-  return c;
+function getCats(){
+let c=["All"];
+words.forEach(w=>{if(!c.includes(w.cat))c.push(w.cat)});
+return c;
 }
 
 function draw(){
-  filters.innerHTML="";
-  cats().forEach(c=>{
-    filters.innerHTML+=`<button class="${cat==c?'active':''}" onclick="setCat('${c}')">${c}</button>`;
-  });
+filters.innerHTML="";
+getCats().forEach(c=>{
+filters.innerHTML+=`<button class="${cat==c?'active':''}" onclick="setCat('${c}')">${c}</button>`;
+});
 }
 
-function setCat(c){ cat=c; draw(); render(); }
+function setCat(c){
+cat=c;
+draw();
+render();
+}
 
 function render(){
-  let v=search.value.toLowerCase();
-  let saved=JSON.parse(localStorage.getItem("saved")||"[]");
+let v=search.value.toLowerCase();
+let saved=JSON.parse(localStorage.getItem("saved")||"[]");
 
-  list.innerHTML="";
+list.innerHTML="";
 
-  let f=words.filter(w=>
-    (cat=="All"||w.cat==cat)&&
-    (w.w.toLowerCase().includes(v)||w.m.includes(v))
-  );
+let f=words.filter(w=>
+(cat=="All"||w.cat==cat)&&
+(w.w.toLowerCase().includes(v)||w.m.includes(v))
+);
 
-  f.forEach(w=>{
-    list.innerHTML+=`
-    <div class="card">
-      <div class="top-row">
-        <div>
-          <div class="id">#${w.id}</div>
-          <div class="word">${w.w}</div>
-        </div>
-        <div class="save ${saved.includes(w.id)?'saved':''}" onclick="toggle(${w.id},this)">★</div>
-      </div>
+f.forEach(w=>{
+list.innerHTML+=`
+<div class="card">
+<div class="row">
+<div>
+<div class="id">#${w.id}</div>
+<div class="word">${w.w}</div>
+</div>
+<div class="save ${saved.includes(w.id)?'saved':''}" onclick="toggle(${w.id},this)">★</div>
+</div>
 
-      <div class="tag">${w.cat}</div>
-      <div class="meaning">${w.m}</div>
-      <div class="example">${w.e}</div>
-    </div>`;
-  });
+<div class="tag">${w.cat}</div>
+<div class="meaning">${w.m}</div>
+<div class="example">${w.e}</div>
+</div>
+`;
+});
 
-  let p=Math.round((saved.length/words.length)*100);
-  pText.innerText=p+"%";
-  pBar.style.width=p+"%";
+let p=Math.round((saved.length/words.length)*100);
+pText.innerText=p+"%";
+pBar.style.width=p+"%";
 }
 
 function toggle(id,el){
-  let s=JSON.parse(localStorage.getItem("saved")||"[]");
-  if(s.includes(id)){s=s.filter(x=>x!=id);el.classList.remove("saved");}
-  else{s.push(id);el.classList.add("saved");}
-  localStorage.setItem("saved",JSON.stringify(s));
-  render();
+let s=JSON.parse(localStorage.getItem("saved")||"[]");
+
+if(s.includes(id)){
+s=s.filter(x=>x!=id);
+el.classList.remove("saved");
+}else{
+s.push(id);
+el.classList.add("saved");
+}
+
+localStorage.setItem("saved",JSON.stringify(s));
+render();
 }
 
 draw();
