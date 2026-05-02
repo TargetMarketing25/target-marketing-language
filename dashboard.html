@@ -177,13 +177,6 @@ body {
   cursor: pointer;
   font-weight: bold;
 }
-
-@media (max-width: 480px) {
-  body { padding: 14px; }
-  .header-text h1 { font-size: 19px; }
-  .language-title { font-size: 21px; }
-  .module { padding: 14px; }
-}
 </style>
 </head>
 
@@ -192,7 +185,7 @@ body {
 <div class="app">
 
   <div class="header">
-    <img src="logo.png" class="logo" alt="Target Marketing Logo">
+    <img src="logo.png" class="logo">
     <div class="header-text">
       <h1>Target Marketing Language</h1>
       <p>منصة تعلم اللغات بطريقة عملية ومنظمة</p>
@@ -201,15 +194,13 @@ body {
 
   <div class="welcome-card">
     <h2>أهلاً بك 👋</h2>
-    <p>
-      اختر اللغة وابدأ رحلتك التعليمية. البداية مع اللغة الإنجليزية،
-      وبعدها سيتم إضافة لغات جديدة داخل نفس المنصة.
-    </p>
+    <p>اختر اللغة وابدأ رحلتك التعليمية</p>
   </div>
 
+  <!-- English -->
   <div class="language-card">
     <div class="language-top">
-      <div class="language-title">🇬🇧 English (US)</div>
+      <div class="language-title">🇬🇧 English</div>
       <div class="status">Active</div>
     </div>
 
@@ -217,8 +208,8 @@ body {
       <div class="module" onclick="goWords()">
         <div class="module-icon">📘</div>
         <div class="module-content">
-          <h3>645 Essential Words</h3>
-          <p>تعلم أهم الكلمات الأساسية بطريقة منظمة</p>
+          <h3>645 Words</h3>
+          <p>ابدأ التعلم الآن</p>
         </div>
         <div class="arrow">›</div>
       </div>
@@ -226,11 +217,43 @@ body {
       <div class="module coming">
         <div class="module-icon">💬</div>
         <div class="module-content">
-          <h3>5000 Common Phrases</h3>
-          <p>قريبًا — جمل عملية للمحادثات اليومية</p>
+          <h3>5000 Phrases</h3>
+          <p>Coming Soon</p>
         </div>
         <div class="arrow">🔒</div>
       </div>
+    </div>
+  </div>
+
+  <!-- French -->
+  <div class="language-card coming">
+    <div class="language-top">
+      <div class="language-title">🇫🇷 French</div>
+      <div class="status">Coming Soon</div>
+    </div>
+  </div>
+
+  <!-- Italian -->
+  <div class="language-card coming">
+    <div class="language-top">
+      <div class="language-title">🇮🇹 Italian</div>
+      <div class="status">Coming Soon</div>
+    </div>
+  </div>
+
+  <!-- German -->
+  <div class="language-card coming">
+    <div class="language-top">
+      <div class="language-title">🇩🇪 German</div>
+      <div class="status">Coming Soon</div>
+    </div>
+  </div>
+
+  <!-- Russian -->
+  <div class="language-card coming">
+    <div class="language-top">
+      <div class="language-title">🇷🇺 Russian</div>
+      <div class="status">Coming Soon</div>
     </div>
   </div>
 
