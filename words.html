@@ -3,190 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>645 Words</title>
+<title>Words</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   background: #050505;
   color: white;
   padding: 15px;
 }
 
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.header h1 {
-  font-size: 20px;
-  color: gold;
-}
-
-.back {
+.card {
   background: #111;
-  border: 1px solid #333;
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-/* Search */
-.search {
-  margin-bottom: 15px;
-}
-
-.search input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #333;
-  background: #111;
-  color: white;
-}
-
-/* Card */
-.word-card {
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 18px;
   padding: 15px;
+  border-radius: 15px;
   margin-bottom: 10px;
-  transition: 0.2s;
-}
-
-.word-card:hover {
-  border-color: gold;
-}
-
-/* Word */
-.word-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .word {
-  font-size: 18px;
   font-weight: bold;
-  direction: ltr;
 }
 
-.save {
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.meaning {
-  color: #aaa;
+button {
   margin-top: 5px;
 }
-
-.example {
-  margin-top: 8px;
-  font-size: 13px;
-  color: #ccc;
-  direction: ltr;
-}
-
-/* Saved */
-.saved {
-  color: gold;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div class="back" onclick="goBack()">رجوع</div>
-  <h1>645 Words</h1>
-</div>
+<button onclick="location.href='dashboard.html'">رجوع</button>
 
-<div class="search">
-  <input type="text" id="search" placeholder="Search..." onkeyup="searchWords()">
-</div>
-
-<div id="wordsContainer"></div>
+<div id="words"></div>
 
 <script>
-
-// 🔥 DATA (نماذج – هنكبرها بعدين)
-const words = [
-  { word: "Time", meaning: "وقت", example: "Time is very important in life." },
-  { word: "Work", meaning: "عمل", example: "I work every day to improve myself." },
-  { word: "Money", meaning: "مال", example: "Money is a tool, not a goal." },
-  { word: "Growth", meaning: "نمو", example: "Personal growth takes time." },
-  { word: "Success", meaning: "نجاح", example: "Success comes from consistency." },
-  { word: "Market", meaning: "سوق", example: "The market is growing fast." },
-  { word: "Partner", meaning: "شريك", example: "He is my business partner." },
-  { word: "Goal", meaning: "هدف", example: "Set a clear goal for your future." },
-  { word: "Skill", meaning: "مهارة", example: "Learning a skill can change your life." }
+const data = [
+{w:"Time",m:"وقت",e:"Time is important."},
+{w:"Work",m:"عمل",e:"I work every day."},
+{w:"Money",m:"مال",e:"Money is useful."}
 ];
 
-// عرض الكلمات
-function displayWords(list) {
-  const container = document.getElementById("wordsContainer");
-  container.innerHTML = "";
-
-  list.forEach((item, index) => {
-
-    const savedWords = JSON.parse(localStorage.getItem("savedWords") || "[]");
-    const isSaved = savedWords.includes(item.word);
-
-    container.innerHTML += `
-      <div class="word-card">
-        <div class="word-top">
-          <div class="word">${item.word}</div>
-          <div class="save ${isSaved ? 'saved' : ''}" onclick="toggleSave('${item.word}', this)">★</div>
-        </div>
-        <div class="meaning">${item.meaning}</div>
-        <div class="example">${item.example}</div>
-      </div>
-    `;
+function show(){
+  words.innerHTML="";
+  data.forEach(x=>{
+    words.innerHTML+=`
+    <div class="card">
+      <div class="word">${x.w}</div>
+      <div>${x.m}</div>
+      <div>${x.e}</div>
+    </div>`;
   });
 }
 
-// Search
-function searchWords() {
-  const value = document.getElementById("search").value.toLowerCase();
-  const filtered = words.filter(w => 
-    w.word.toLowerCase().includes(value) || 
-    w.meaning.includes(value)
-  );
-  displayWords(filtered);
-}
-
-// Save
-function toggleSave(word, el) {
-  let saved = JSON.parse(localStorage.getItem("savedWords") || "[]");
-
-  if (saved.includes(word)) {
-    saved = saved.filter(w => w !== word);
-    el.classList.remove("saved");
-  } else {
-    saved.push(word);
-    el.classList.add("saved");
-  }
-
-  localStorage.setItem("savedWords", JSON.stringify(saved));
-}
-
-// Back
-function goBack() {
-  window.location.href = "dashboard.html";
-}
-
-// Init
-displayWords(words);
-
+show();
 </script>
 
 </body>
