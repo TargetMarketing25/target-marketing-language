@@ -39,11 +39,9 @@ body{
 .tag{display:inline-block;margin-top:8px;color:#ffd700;font-size:12px;border:1px solid rgba(212,175,55,.25);padding:5px 9px;border-radius:999px}
 .pron{margin-top:8px;color:#aaa}
 .meaning{margin-top:6px;color:#fff;font-size:16px}
-
 .example{margin-top:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px}
-.example-en{direction:ltr;text-align:left;color:#ddd;font-size:14px}
-.example-ar{direction:rtl;text-align:right;color:#d4af37;margin-top:7px;font-size:14px}
-
+.example-en{direction:ltr;text-align:left;color:#ddd;font-size:14px;line-height:1.6}
+.example-ar{direction:rtl;text-align:right;color:#d4af37;margin-top:7px;font-size:14px;line-height:1.7}
 .empty{text-align:center;color:#777;padding:30px}
 </style>
 </head>
@@ -83,8 +81,6 @@ if(localStorage.getItem("loggedIn")!=="true"){
 }
 
 const words = [
-
-/* ===== 1 → 30 ===== */
 {id:1,cat:"Daily Life",w:"Time",p:"تايم",m:"وقت",e:"Time is very important in life.",ar:"الوقت مهم جدًا في الحياة."},
 {id:2,cat:"Daily Life",w:"Day",p:"داي",m:"يوم",e:"Today is a new day.",ar:"اليوم هو يوم جديد."},
 {id:3,cat:"Daily Life",w:"Week",p:"ويك",m:"أسبوع",e:"This week is very busy.",ar:"هذا الأسبوع مزدحم جدًا."},
@@ -119,13 +115,11 @@ const words = [
 {id:29,cat:"Basic Verbs",w:"Listen",p:"ليسن",m:"يستمع",e:"Listen carefully before you answer.",ar:"استمع جيدًا قبل أن تجيب."},
 {id:30,cat:"Basic Verbs",w:"Ask",p:"آسك",m:"يسأل",e:"Ask smart questions.",ar:"اطرح أسئلة ذكية."},
 
-/* ===== 31 → 60 ===== */
 {id:31,cat:"Business",w:"Business",p:"بزنس",m:"عمل",e:"I want to grow my business.",ar:"أريد أن أطور عملي."},
 {id:32,cat:"Business",w:"Money",p:"ماني",m:"مال",e:"Money is important but not everything.",ar:"المال مهم لكنه ليس كل شيء."},
 {id:33,cat:"Business",w:"Market",p:"ماركت",m:"سوق",e:"The market is very competitive.",ar:"السوق تنافسي جدًا."},
 {id:34,cat:"Business",w:"Client",p:"كلاينت",m:"عميل",e:"The client is satisfied.",ar:"العميل راضٍ."},
 {id:35,cat:"Business",w:"Customer",p:"كستمر",m:"زبون",e:"The customer is happy.",ar:"الزبون سعيد."},
-
 {id:36,cat:"Business",w:"Sell",p:"سيل",m:"يبيع",e:"I sell products online.",ar:"أبيع منتجات عبر الإنترنت."},
 {id:37,cat:"Business",w:"Buy",p:"باي",m:"يشتري",e:"People buy what they trust.",ar:"الناس تشتري ما تثق به."},
 {id:38,cat:"Business",w:"Profit",p:"بروفيت",m:"ربح",e:"Profit is growing every month.",ar:"الأرباح تزيد كل شهر."},
@@ -133,29 +127,76 @@ const words = [
 {id:40,cat:"Business",w:"Price",p:"برايس",m:"سعر",e:"The price is reasonable.",ar:"السعر مناسب."},
 
 {id:41,cat:"Marketing",w:"Marketing",p:"ماركتنج",m:"تسويق",e:"Marketing is a powerful skill.",ar:"التسويق مهارة قوية."},
-{id:42,cat:"Marketing",w:"Content",p:"كونتنت",m:"محتوى",e:"Create valuable content.",ar:"أنشئ محتوى ذو قيمة."},
+{id:42,cat:"Marketing",w:"Content",p:"كونتنت",m:"محتوى",e:"Create valuable content.",ar:"أنشئ محتوى ذا قيمة."},
 {id:43,cat:"Marketing",w:"Audience",p:"أودينس",m:"جمهور",e:"Know your audience well.",ar:"اعرف جمهورك جيدًا."},
 {id:44,cat:"Marketing",w:"Brand",p:"براند",m:"علامة تجارية",e:"Build a strong brand.",ar:"ابنِ علامة تجارية قوية."},
 {id:45,cat:"Marketing",w:"Ad",p:"آد",m:"إعلان",e:"This ad is effective.",ar:"هذا الإعلان فعال."},
 
 {id:46,cat:"Travel",w:"Travel",p:"ترافل",m:"سفر",e:"I love to travel.",ar:"أحب السفر."},
-{id:47,cat:"Travel",w:"Airport",p:"ايربورت",m:"مطار",e:"The airport is crowded.",ar:"المطار مزدحم."},
+{id:47,cat:"Travel",w:"Airport",p:"إيربورت",m:"مطار",e:"The airport is crowded.",ar:"المطار مزدحم."},
 {id:48,cat:"Travel",w:"Flight",p:"فلايت",m:"رحلة طيران",e:"My flight is delayed.",ar:"رحلتي متأخرة."},
 {id:49,cat:"Travel",w:"Hotel",p:"هوتيل",m:"فندق",e:"The hotel is comfortable.",ar:"الفندق مريح."},
 {id:50,cat:"Travel",w:"Ticket",p:"تيكت",m:"تذكرة",e:"I bought a ticket.",ar:"اشتريت تذكرة."},
 
-{id:51,cat:"Self Dev",w:"Success",p:"سكسس",m:"نجاح",e:"Success needs effort.",ar:"النجاح يحتاج مجهود."},
-{id:52,cat:"Self Dev",w:"Goal",p:"جول",m:"هدف",e:"Set clear goals.",ar:"حدد أهداف واضحة."},
+{id:51,cat:"Self Dev",w:"Success",p:"سكسس",m:"نجاح",e:"Success needs effort.",ar:"النجاح يحتاج إلى مجهود."},
+{id:52,cat:"Self Dev",w:"Goal",p:"جول",m:"هدف",e:"Set clear goals.",ar:"حدد أهدافًا واضحة."},
 {id:53,cat:"Self Dev",w:"Focus",p:"فوكس",m:"تركيز",e:"Focus on your goal.",ar:"ركز على هدفك."},
 {id:54,cat:"Self Dev",w:"Discipline",p:"ديسبلين",m:"انضباط",e:"Discipline is key.",ar:"الانضباط هو المفتاح."},
 {id:55,cat:"Self Dev",w:"Habit",p:"هابت",m:"عادة",e:"Build good habits.",ar:"ابنِ عادات جيدة."},
 
 {id:56,cat:"Tech",w:"Computer",p:"كمبيوتر",m:"حاسوب",e:"I use my computer daily.",ar:"أستخدم الحاسوب يوميًا."},
-{id:57,cat:"Tech",w:"Internet",p:"انترنت",m:"إنترنت",e:"The internet is fast.",ar:"الإنترنت سريع."},
+{id:57,cat:"Tech",w:"Internet",p:"إنترنت",m:"إنترنت",e:"The internet is fast.",ar:"الإنترنت سريع."},
 {id:58,cat:"Tech",w:"App",p:"آب",m:"تطبيق",e:"This app is useful.",ar:"هذا التطبيق مفيد."},
 {id:59,cat:"Tech",w:"System",p:"سيستم",m:"نظام",e:"The system works well.",ar:"النظام يعمل جيدًا."},
-{id:60,cat:"Tech",w:"Data",p:"داتا",m:"بيانات",e:"Data is very important.",ar:"البيانات مهمة جدًا."}
+{id:60,cat:"Tech",w:"Data",p:"داتا",m:"بيانات",e:"Data is very important.",ar:"البيانات مهمة جدًا."},
 
+{id:61,cat:"Daily Life",w:"Morning",p:"مورنينج",m:"صباح",e:"I wake up early in the morning.",ar:"أستيقظ مبكرًا في الصباح."},
+{id:62,cat:"Daily Life",w:"Night",p:"نايت",m:"ليل",e:"I study at night.",ar:"أذاكر في الليل."},
+{id:63,cat:"Daily Life",w:"Room",p:"روم",m:"غرفة",e:"My room is clean.",ar:"غرفتي نظيفة."},
+{id:64,cat:"Daily Life",w:"Door",p:"دور",m:"باب",e:"Close the door, please.",ar:"أغلق الباب من فضلك."},
+{id:65,cat:"Daily Life",w:"Window",p:"ويندو",m:"نافذة",e:"Open the window.",ar:"افتح النافذة."},
+
+{id:66,cat:"Basic Verbs",w:"Open",p:"أوبن",m:"يفتح",e:"Open your book.",ar:"افتح كتابك."},
+{id:67,cat:"Basic Verbs",w:"Close",p:"كلوز",m:"يغلق",e:"Close your notebook.",ar:"أغلق كراستك."},
+{id:68,cat:"Basic Verbs",w:"Move",p:"موف",m:"يتحرك",e:"Move forward every day.",ar:"تحرك للأمام كل يوم."},
+{id:69,cat:"Basic Verbs",w:"Try",p:"تراي",m:"يحاول",e:"Try again and do not stop.",ar:"حاول مرة أخرى ولا تتوقف."},
+{id:70,cat:"Basic Verbs",w:"Help",p:"هيلب",m:"يساعد",e:"I can help you.",ar:"يمكنني مساعدتك."},
+
+{id:71,cat:"Business",w:"Company",p:"كمبني",m:"شركة",e:"The company is growing fast.",ar:"الشركة تنمو بسرعة."},
+{id:72,cat:"Business",w:"Product",p:"برودكت",m:"منتج",e:"This product solves a problem.",ar:"هذا المنتج يحل مشكلة."},
+{id:73,cat:"Business",w:"Service",p:"سيرفيس",m:"خدمة",e:"Good service builds trust.",ar:"الخدمة الجيدة تبني الثقة."},
+{id:74,cat:"Business",w:"Meeting",p:"ميتنج",m:"اجتماع",e:"We have a meeting tomorrow.",ar:"لدينا اجتماع غدًا."},
+{id:75,cat:"Business",w:"Deal",p:"ديل",m:"صفقة",e:"This deal is important.",ar:"هذه الصفقة مهمة."},
+
+{id:76,cat:"Marketing",w:"Campaign",p:"كامبين",m:"حملة",e:"The campaign reached many people.",ar:"وصلت الحملة إلى عدد كبير من الناس."},
+{id:77,cat:"Marketing",w:"Offer",p:"أوفر",m:"عرض",e:"A strong offer increases sales.",ar:"العرض القوي يزيد المبيعات."},
+{id:78,cat:"Marketing",w:"Lead",p:"ليد",m:"عميل محتمل",e:"We got a new lead today.",ar:"حصلنا على عميل محتمل جديد اليوم."},
+{id:79,cat:"Marketing",w:"Sales",p:"سيلز",m:"مبيعات",e:"Sales increased this month.",ar:"زادت المبيعات هذا الشهر."},
+{id:80,cat:"Marketing",w:"Reach",p:"ريتش",m:"وصول",e:"We need more reach online.",ar:"نحتاج إلى وصول أكبر على الإنترنت."},
+
+{id:81,cat:"Money & Trading",w:"Capital",p:"كابيتال",m:"رأس مال",e:"Protect your capital first.",ar:"احمِ رأس مالك أولًا."},
+{id:82,cat:"Money & Trading",w:"Risk",p:"ريسك",m:"مخاطرة",e:"Manage risk before entering.",ar:"أدر المخاطر قبل الدخول."},
+{id:83,cat:"Money & Trading",w:"Reward",p:"ريوارد",m:"عائد",e:"The reward is worth the risk.",ar:"العائد يستحق المخاطرة."},
+{id:84,cat:"Money & Trading",w:"Trade",p:"تريد",m:"تداول",e:"I trade carefully.",ar:"أتداول بحذر."},
+{id:85,cat:"Money & Trading",w:"Trend",p:"تريند",m:"اتجاه",e:"The trend is moving up.",ar:"الاتجاه يتحرك للأعلى."},
+
+{id:86,cat:"Travel",w:"Passport",p:"باسبورت",m:"جواز سفر",e:"Do not forget your passport.",ar:"لا تنسَ جواز سفرك."},
+{id:87,cat:"Travel",w:"Bag",p:"باج",m:"حقيبة",e:"My bag is heavy.",ar:"حقيبتي ثقيلة."},
+{id:88,cat:"Travel",w:"Map",p:"ماب",m:"خريطة",e:"Use the map to find the place.",ar:"استخدم الخريطة لتجد المكان."},
+{id:89,cat:"Travel",w:"Taxi",p:"تاكسي",m:"تاكسي",e:"Take a taxi to the hotel.",ar:"خذ تاكسي إلى الفندق."},
+{id:90,cat:"Travel",w:"Reservation",p:"ريزرفيشن",m:"حجز",e:"I have a hotel reservation.",ar:"لدي حجز في الفندق."},
+
+{id:91,cat:"Self Dev",w:"Energy",p:"إنرجي",m:"طاقة",e:"Use your energy wisely.",ar:"استخدم طاقتك بحكمة."},
+{id:92,cat:"Self Dev",w:"Mindset",p:"مايندست",m:"عقلية",e:"Your mindset shapes your life.",ar:"عقليتك تشكل حياتك."},
+{id:93,cat:"Self Dev",w:"Action",p:"أكشن",m:"تنفيذ",e:"Take action now.",ar:"ابدأ التنفيذ الآن."},
+{id:94,cat:"Self Dev",w:"Vision",p:"فيجن",m:"رؤية",e:"A clear vision gives direction.",ar:"الرؤية الواضحة تمنحك اتجاهًا."},
+{id:95,cat:"Self Dev",w:"Progress",p:"بروجريس",m:"تقدم",e:"Small progress is still progress.",ar:"التقدم البسيط يظل تقدمًا."},
+
+{id:96,cat:"Common Adjectives",w:"Strong",p:"سترونج",m:"قوي",e:"You need a strong mindset.",ar:"أنت تحتاج إلى عقلية قوية."},
+{id:97,cat:"Common Adjectives",w:"Smart",p:"سمارت",m:"ذكي",e:"Work smart, not just hard.",ar:"اعمل بذكاء، وليس فقط بجهد."},
+{id:98,cat:"Common Adjectives",w:"Fast",p:"فاست",m:"سريع",e:"Fast learning needs practice.",ar:"التعلم السريع يحتاج إلى ممارسة."},
+{id:99,cat:"Common Adjectives",w:"Easy",p:"إيزي",m:"سهل",e:"This lesson is easy.",ar:"هذا الدرس سهل."},
+{id:100,cat:"Common Adjectives",w:"Ready",p:"ريدي",m:"جاهز",e:"I am ready to start.",ar:"أنا جاهز للبدء."}
 ];
 
 let currentCat="All";
@@ -182,11 +223,17 @@ function render(){
   const saved=savedList();
 
   const filtered=words.filter(x=>{
-    return (currentCat==="All"||x.cat===currentCat) &&
-    (x.w.toLowerCase().includes(q) || x.m.includes(q));
+    const byCat=currentCat==="All"||x.cat===currentCat;
+    const bySearch=
+      x.w.toLowerCase().includes(q) ||
+      x.m.includes(q) ||
+      x.cat.toLowerCase().includes(q) ||
+      x.e.toLowerCase().includes(q) ||
+      x.ar.includes(q);
+    return byCat && bySearch;
   });
 
-  list.innerHTML=filtered.map(x=>`
+  list.innerHTML=filtered.length?filtered.map(x=>`
     <div class="card">
       <div class="row">
         <div>
@@ -205,7 +252,7 @@ function render(){
         <div class="example-ar">${x.ar}</div>
       </div>
     </div>
-  `).join("");
+  `).join(""):`<div class="empty">لا توجد نتائج</div>`;
 
   const percent=Math.round((saved.length/words.length)*100);
   pText.innerText=`${saved.length}/${words.length} - ${percent}%`;
