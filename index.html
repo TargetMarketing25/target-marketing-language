@@ -1,85 +1,144 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Target Marketing Language</title>
+<meta name="theme-color" content="#050505" />
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: Arial;
-  background: #050505;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(212,175,55,0.16), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0,80,180,0.16), transparent 40%),
+    #050505;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-x: hidden;
 }
 
-/* Intro */
 .intro {
   position: fixed;
   inset: 0;
-  background: black;
+  background: #050505;
   display: flex;
-  justify-content: center;
   align-items: center;
-  animation: fadeOut 1s forwards;
-  animation-delay: 1.5s;
+  justify-content: center;
+  z-index: 9999;
+  animation: introFadeOut .8s ease forwards;
+  animation-delay: 1.6s;
 }
 
 .intro img {
-  width: 220px;
-  animation: zoom 1.2s ease;
+  width: 260px;
+  max-width: 75%;
+  animation: introLogo 1.2s ease forwards;
+  filter: drop-shadow(0 0 35px rgba(212,175,55,.35));
 }
 
-@keyframes zoom {
-  0% { transform: scale(0.7); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes introLogo {
+  0% { opacity: 0; transform: scale(.75) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-@keyframes fadeOut {
+@keyframes introFadeOut {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* Login */
-.card {
-  width: 90%;
-  max-width: 400px;
-  background: #111;
-  padding: 25px;
-  border-radius: 20px;
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #171717, #0d0d0d);
+  border-radius: 28px;
+  padding: 34px 24px 26px;
+  border: 1px solid rgba(212,175,55,.25);
+  box-shadow: 0 30px 80px rgba(0,0,0,.65), 0 0 30px rgba(212,175,55,.08);
   text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardEnter .8s ease forwards;
+  animation-delay: 1.9s;
 }
 
-.logo {
-  width: 200px;
-  margin-bottom: 15px;
+@keyframes cardEnter {
+  to { opacity: 1; transform: translateY(0); }
 }
+
+.logo-wrap img {
+  width: 280px;
+  max-width: 82%;
+  height: auto;
+  animation: logoFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 25px 45px rgba(0,0,0,.7)) drop-shadow(0 0 25px rgba(212,175,55,.22));
+}
+
+@keyframes logoFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-7px) scale(1.025); }
+}
+
+.subtitle {
+  color: #d8d8d8;
+  font-size: 15px;
+  margin: 10px 0 28px;
+  line-height: 1.7;
+}
+
+.form { direction: ltr; }
 
 input {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: none;
-  background: #222;
-  color: white;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212,175,55,.15);
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  background: gold;
+  padding: 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffd700, #d4af37);
+  color: #111;
+  font-size: 15px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .error {
-  color: red;
+  color: #ff4d4d;
   margin-top: 10px;
+  font-size: 13px;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+}
+
+@media (max-width: 480px) {
+  .login-card { padding: 26px 18px; }
+  .logo-wrap img { width: 245px; }
+  .intro img { width: 230px; }
 }
 </style>
 </head>
@@ -87,31 +146,36 @@ button {
 <body>
 
 <div class="intro">
-  <img src="logo.png">
+  <img src="logo.png" alt="Target Marketing Logo">
 </div>
 
-<div class="card">
-  <img src="logo.png" class="logo">
-  <p>ابدأ تعلم اللغات بطريقة عملية ومنظمة</p>
+<div class="login-card">
+  <div class="logo-wrap">
+    <img src="logo.png" alt="Target Marketing Logo">
+  </div>
 
-  <input id="username" placeholder="Username">
-  <input id="password" type="password" placeholder="Password">
+  <div class="subtitle">ابدأ تعلم اللغات بطريقة عملية ومنظمة</div>
 
-  <button onclick="login()">دخول</button>
+  <div class="form">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">دخول المنصة</button>
+  </div>
 
-  <div id="error" class="error"></div>
+  <div class="error" id="error"></div>
+  <div class="footer">© Target Marketing Academy</div>
 </div>
 
 <script>
-function login(){
-  let u = username.value;
-  let p = password.value;
+function login() {
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-  if(u==="student" && p==="target2026"){
-    localStorage.setItem("loggedIn","true");
-    location.href="dashboard.html";
-  }else{
-    error.innerText="بيانات الدخول غير صحيحة";
+  if (user === "student" && pass === "target2026") {
+    localStorage.setItem("loggedIn", "true");
+    window.location.href = "dashboard.html";
+  } else {
+    document.getElementById("error").innerText = "بيانات الدخول غير صحيحة";
   }
 }
 </script>
