@@ -3,271 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>645 Words - Target Marketing Language</title>
+<title>645 Words</title>
 
 <style>
-*{box-sizing:border-box}
-body{
+body {
   margin:0;
-  font-family:Arial,sans-serif;
-  background:
-    radial-gradient(circle at top,rgba(212,175,55,.14),transparent 28%),
-    #050505;
-  color:#fff;
-  padding:16px;
+  background:#050505;
+  color:white;
+  font-family:Arial;
+  padding:20px;
 }
-.app{max-width:560px;margin:auto}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.back{background:#111;border:1px solid #333;color:white;padding:10px 14px;border-radius:14px;cursor:pointer}
-.title{direction:ltr;text-align:left}
-.title h1{margin:0;color:#ffd700;font-size:24px}
-.title p{margin:5px 0 0;color:#aaa}
-.progress{background:#111;border:1px solid #222;padding:13px;border-radius:18px;margin-bottom:14px}
-.progress-text{display:flex;justify-content:space-between;margin-bottom:8px;color:#ccc}
-.bar{height:8px;background:#222;border-radius:999px;overflow:hidden}
-.fill{height:100%;width:0%;background:linear-gradient(90deg,#ffd700,#d4af37)}
-.search input{width:100%;padding:14px;border-radius:14px;border:1px solid #333;background:#111;color:#fff;margin-bottom:12px;font-size:15px}
-.filters{display:flex;gap:7px;overflow-x:auto;margin-bottom:14px;padding-bottom:6px}
-.filters button{background:#111;border:1px solid #333;color:#ccc;padding:9px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
-.filters .active{background:#ffd700;color:#111;font-weight:bold}
-.card{background:#111;border:1px solid #252525;border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 16px 35px rgba(0,0,0,.35)}
-.row{display:flex;justify-content:space-between;align-items:flex-start}
-.id{color:#ffd700;font-size:13px;font-weight:bold;direction:ltr}
-.word{font-size:24px;font-weight:900;direction:ltr;text-align:left}
-.save{font-size:24px;color:#666;cursor:pointer}
-.saved{color:#ffd700}
-.tag{display:inline-block;margin-top:8px;color:#ffd700;font-size:12px;border:1px solid rgba(212,175,55,.25);padding:5px 9px;border-radius:999px}
-.pron{margin-top:8px;color:#aaa}
-.meaning{margin-top:6px;color:#fff;font-size:16px}
-
-.example{margin-top:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px}
-.example-en{direction:ltr;text-align:left;color:#ddd;font-size:14px}
-.example-ar{direction:rtl;text-align:right;color:#d4af37;margin-top:7px;font-size:14px}
-
-.empty{text-align:center;color:#777;padding:30px}
+.card {
+  background:#111;
+  border:1px solid #333;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+.word {
+  font-size:20px;
+  font-weight:bold;
+}
+.en {
+  direction:ltr;
+  margin-top:8px;
+}
+.ar {
+  color:#d4af37;
+}
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<h1>645 Words - Premium</h1>
 
-  <div class="top">
-    <button class="back" onclick="location.href='dashboard.html'">رجوع</button>
-    <div class="title">
-      <h1>645 Words</h1>
-      <p>American English System</p>
-    </div>
-  </div>
-
-  <div class="progress">
-    <div class="progress-text">
-      <span>تقدمك</span>
-      <span id="pText">0%</span>
-    </div>
-    <div class="bar"><div id="pBar" class="fill"></div></div>
-  </div>
-
-  <div class="search">
-    <input id="search" placeholder="Search word or meaning..." onkeyup="render()">
-  </div>
-
-  <div class="filters" id="filters"></div>
-  <div id="list"></div>
-
-</div>
+<div id="list"></div>
 
 <script>
-if(localStorage.getItem("loggedIn")!=="true"){
-  location.href="index.html";
-}
 
 const words = [
-  
-{id:1,e:"Time management is the foundation of success in business and life.",ar:"إدارة الوقت هي أساس النجاح في العمل والحياة."},
-{id:2,e:"Every day is a new chance to improve your skills.",ar:"كل يوم هو فرصة جديدة لتطوير مهاراتك."},
-{id:3,e:"Planning your week helps you stay productive and focused.",ar:"تخطيط الأسبوع يساعدك تكون منتج ومركز."},
-{id:4,e:"This month we aim to achieve higher results.",ar:"هذا الشهر نسعى لتحقيق نتائج أعلى."},
-{id:5,e:"This year is full of opportunities for growth.",ar:"هذه السنة مليئة بفرص النمو."},
+{id:1,w:"Time",m:"وقت",p:"تايم",cat:"Life",e:"Time management is the foundation of success in business and life.",ar:"إدارة الوقت هي أساس النجاح في العمل والحياة."},
+{id:2,w:"Day",m:"يوم",p:"داي",cat:"Life",e:"Every day is a new chance to improve your skills.",ar:"كل يوم هو فرصة جديدة لتطوير مهاراتك."},
+{id:3,w:"Week",m:"أسبوع",p:"ويك",cat:"Life",e:"Planning your week helps you stay productive and focused.",ar:"تخطيط الأسبوع يساعدك تكون منتج ومركز."},
+{id:4,w:"Month",m:"شهر",p:"منث",cat:"Life",e:"This month we aim to achieve higher results.",ar:"هذا الشهر نسعى لتحقيق نتائج أعلى."},
+{id:5,w:"Year",m:"سنة",p:"يير",cat:"Life",e:"This year is full of opportunities for growth.",ar:"هذه السنة مليئة بفرص النمو."},
 
-{id:6,e:"Building a strong home environment supports your success.",ar:"بناء بيئة منزلية قوية يدعم نجاحك."},
-{id:7,e:"Your family can be your biggest support system.",ar:"عائلتك ممكن تكون أكبر دعم ليك."},
-{id:8,e:"Choosing the right friends impacts your future.",ar:"اختيار الأصدقاء الصح بيأثر على مستقبلك."},
-{id:9,e:"Healthy food improves your performance and focus.",ar:"الأكل الصحي يحسن أدائك وتركيزك."},
-{id:10,e:"Drinking water regularly keeps your energy high.",ar:"شرب الماء بانتظام يحافظ على طاقتك."},
+{id:6,w:"Home",m:"منزل",p:"هوم",cat:"Life",e:"A stable home environment supports your success.",ar:"البيئة المنزلية المستقرة تدعم نجاحك."},
+{id:7,w:"Family",m:"عائلة",p:"فاميلي",cat:"Life",e:"Your family can be your strongest support system.",ar:"عائلتك ممكن تكون أقوى دعم ليك."},
+{id:8,w:"Friend",m:"صديق",p:"فريند",cat:"Life",e:"Choosing the right friends impacts your future.",ar:"اختيار الأصدقاء الصح بيأثر على مستقبلك."},
+{id:9,w:"Food",m:"طعام",p:"فود",cat:"Life",e:"Healthy food improves your performance.",ar:"الأكل الصحي يحسن أدائك."},
+{id:10,w:"Water",m:"ماء",p:"ووتر",cat:"Life",e:"Drinking water keeps your energy high.",ar:"شرب الماء يحافظ على طاقتك."},
 
-{id:11,e:"Your phone can be a powerful business tool if used wisely.",ar:"موبايلك ممكن يكون أداة قوية لو استخدمته صح."},
-{id:12,e:"Having a reliable car saves time and increases productivity.",ar:"وجود سيارة مناسبة بيوفر وقت ويزود الإنتاجية."},
-{id:13,e:"Every road you take teaches you something new.",ar:"كل طريق بتمشي فيه بيعلمك حاجة جديدة."},
-{id:14,e:"Reading books expands your knowledge and mindset.",ar:"قراءة الكتب توسع معرفتك وعقليتك."},
-{id:15,e:"Consistent work leads to long-term success.",ar:"العمل المستمر بيؤدي لنجاح طويل المدى."},
+{id:11,w:"Phone",m:"هاتف",p:"فون",cat:"Tech",e:"Your phone can be a powerful business tool.",ar:"موبايلك ممكن يكون أداة قوية في البزنس."},
+{id:12,w:"Car",m:"سيارة",p:"كار",cat:"Life",e:"A reliable car saves time and effort.",ar:"سيارة مناسبة بتوفر وقت ومجهود."},
+{id:13,w:"Road",m:"طريق",p:"رود",cat:"Life",e:"Every road teaches you something new.",ar:"كل طريق بيعلمك حاجة جديدة."},
+{id:14,w:"Book",m:"كتاب",p:"بوك",cat:"Learning",e:"Reading books expands your mindset.",ar:"الكتب توسع عقليتك."},
+{id:15,w:"Work",m:"عمل",p:"ورك",cat:"Business",e:"Consistent work leads to long-term success.",ar:"العمل المستمر بيؤدي لنجاح طويل المدى."},
 
-{id:16,e:"You must go forward even when things are difficult.",ar:"لازم تتحرك للأمام حتى لو الأمور صعبة."},
-{id:17,e:"Opportunities come to those who are ready.",ar:"الفرص بتيجي للي مستعدين."},
-{id:18,e:"Starting is the most important step in any journey.",ar:"البداية هي أهم خطوة في أي رحلة."},
-{id:19,e:"Knowing when to stop is as important as knowing when to start.",ar:"معرفة إمتى توقف مهمة زي معرفة إمتى تبدأ."},
-{id:20,e:"Learning new skills increases your value in the market.",ar:"تعلم مهارات جديدة بيزود قيمتك في السوق."},
+{id:16,w:"Go",m:"يذهب",p:"جو",cat:"Verb",e:"You must go forward even when it's hard.",ar:"لازم تتحرك للأمام حتى لو صعب."},
+{id:17,w:"Come",m:"يأتي",p:"كم",cat:"Verb",e:"Opportunities come to those who are ready.",ar:"الفرص بتيجي للي مستعدين."},
+{id:18,w:"Start",m:"يبدأ",p:"ستارت",cat:"Verb",e:"Starting is the most important step.",ar:"البداية أهم خطوة."},
+{id:19,w:"Stop",m:"يتوقف",p:"ستوب",cat:"Verb",e:"Stop wasting your time on distractions.",ar:"بلاش تضيع وقتك في المشتتات."},
+{id:20,w:"Learn",m:"يتعلم",p:"ليرن",cat:"Learning",e:"Learning new skills increases your value.",ar:"تعلم مهارات جديدة يزود قيمتك."},
 
-{id:21,e:"Teaching others strengthens your own knowledge.",ar:"تعليم الآخرين يقوي فهمك."},
-{id:22,e:"Building your future requires patience and effort.",ar:"بناء مستقبلك محتاج صبر ومجهود."},
-{id:23,e:"Creating content can open new income streams.",ar:"صناعة المحتوى ممكن تفتح مصادر دخل جديدة."},
-{id:24,e:"Growth comes from consistent improvement.",ar:"النمو بييجي من التطوير المستمر."},
-{id:25,e:"Winning is the result of discipline and strategy.",ar:"الفوز نتيجة الانضباط والاستراتيجية."},
+{id:21,w:"Teach",m:"يعلّم",p:"تيتش",cat:"Learning",e:"Teaching others strengthens your knowledge.",ar:"تعليم الآخرين يقوي معرفتك."},
+{id:22,w:"Build",m:"يبني",p:"بيلد",cat:"Business",e:"Building your future requires effort.",ar:"بناء مستقبلك محتاج مجهود."},
+{id:23,w:"Create",m:"ينشئ",p:"كرييت",cat:"Marketing",e:"Creating content opens new income streams.",ar:"صناعة المحتوى تفتح مصادر دخل."},
+{id:24,w:"Grow",m:"ينمو",p:"جرو",cat:"Growth",e:"Growth comes from consistency.",ar:"النمو بييجي من الاستمرارية."},
+{id:25,w:"Win",m:"يفوز",p:"وين",cat:"Success",e:"Winning is the result of discipline.",ar:"الفوز نتيجة الانضباط."},
 
-{id:26,e:"Reading daily sharpens your thinking.",ar:"القراءة اليومية بتقوي تفكيرك."},
-{id:27,e:"Writing your goals makes them clearer.",ar:"كتابة أهدافك بتخليها أوضح."},
-{id:28,e:"Speaking confidently builds strong presence.",ar:"الكلام بثقة بيبني حضور قوي."},
-{id:29,e:"Listening carefully helps you understand better.",ar:"الاستماع الجيد يساعدك تفهم أكتر."},
-{id:30,e:"Asking the right questions leads to better decisions.",ar:"طرح الأسئلة الصح بيؤدي لقرارات أفضل."},
+{id:26,w:"Read",m:"يقرأ",p:"ريد",cat:"Learning",e:"Reading daily sharpens your thinking.",ar:"القراءة اليومية تقوي التفكير."},
+{id:27,w:"Write",m:"يكتب",p:"رايت",cat:"Learning",e:"Writing goals makes them clear.",ar:"كتابة الأهداف توضحها."},
+{id:28,w:"Speak",m:"يتحدث",p:"سبيك",cat:"Communication",e:"Speaking confidently builds presence.",ar:"الكلام بثقة يبني حضور."},
+{id:29,w:"Listen",m:"يستمع",p:"ليسن",cat:"Communication",e:"Listening helps you understand better.",ar:"الاستماع يخليك تفهم أكتر."},
+{id:30,w:"Ask",m:"يسأل",p:"آسك",cat:"Communication",e:"Asking questions improves decisions.",ar:"الأسئلة تحسن قراراتك."}
 
-{id:31,e:"A strong business starts with a clear vision.",ar:"البزنس القوي بيبدأ برؤية واضحة."},
-{id:32,e:"Managing money wisely is essential for success.",ar:"إدارة المال بذكاء ضرورية للنجاح."},
-{id:33,e:"Understanding the market gives you a competitive edge.",ar:"فهم السوق بيديك ميزة تنافسية."},
-{id:34,e:"A satisfied client brings more opportunities.",ar:"العميل الراضي بيجيب فرص أكتر."},
-{id:35,e:"Customer experience defines your brand.",ar:"تجربة العميل بتحدد قوة البراند."},
-
-{id:36,e:"Selling is about solving problems, not pushing products.",ar:"البيع هو حل مشاكل مش فرض منتجات."},
-{id:37,e:"People buy based on trust and value.",ar:"الناس بتشتري بناءً على الثقة والقيمة."},
-{id:38,e:"Profit is the result of smart decisions.",ar:"الربح نتيجة قرارات ذكية."},
-{id:39,e:"Avoiding losses is key to long-term growth.",ar:"تجنب الخسائر مهم للنمو الطويل."},
-{id:40,e:"Pricing correctly affects your market position.",ar:"تسعيرك الصح بيحدد مكانك في السوق."},
-
-{id:41,e:"Marketing is about delivering value to the right audience.",ar:"التسويق هو توصيل قيمة للجمهور المناسب."},
-{id:42,e:"Content is the foundation of digital success.",ar:"المحتوى هو أساس النجاح الرقمي."},
-{id:43,e:"Knowing your audience increases your impact.",ar:"معرفة جمهورك بتزود تأثيرك."},
-{id:44,e:"A strong brand builds long-term trust.",ar:"البراند القوي بيبني ثقة طويلة."},
-{id:45,e:"Effective ads focus on results, not just visuals.",ar:"الإعلانات الفعالة بتركز على النتائج مش الشكل."},
-
-{id:46,e:"Traveling expands your mindset and experience.",ar:"السفر بيوسع عقليتك وخبرتك."},
-{id:47,e:"Airports are gateways to new opportunities.",ar:"المطارات بوابات لفرص جديدة."},
-{id:48,e:"Every flight is a step toward a new goal.",ar:"كل رحلة خطوة نحو هدف جديد."},
-{id:49,e:"Choosing the right hotel improves your experience.",ar:"اختيار الفندق المناسب يحسن تجربتك."},
-{id:50,e:"Planning your trip saves time and effort.",ar:"تخطيط السفر بيوفر وقت ومجهود."},
-
-{id:51,e:"Success requires consistency and focus.",ar:"النجاح يحتاج استمرارية وتركيز."},
-{id:52,e:"Setting goals gives your life direction.",ar:"تحديد الأهداف بيدي حياتك اتجاه."},
-{id:53,e:"Focus eliminates distractions.",ar:"التركيز بيقلل المشتتات."},
-{id:54,e:"Discipline is what keeps you moving forward.",ar:"الانضباط هو اللي بيخليك تكمل."},
-{id:55,e:"Habits shape your future.",ar:"العادات بتشكل مستقبلك."},
-
-{id:56,e:"Technology makes work faster and smarter.",ar:"التكنولوجيا بتخلي الشغل أسرع وأذكى."},
-{id:57,e:"The internet connects you to global opportunities.",ar:"الإنترنت بيوصلك بفرص عالمية."},
-{id:58,e:"Using the right app improves productivity.",ar:"استخدام التطبيق الصح يزيد الإنتاجية."},
-{id:59,e:"A strong system ensures smooth operations.",ar:"النظام القوي يضمن شغل سلس."},
-{id:60,e:"Data helps you make better decisions.",ar:"البيانات بتساعدك تاخد قرارات أفضل."},
-
-{id:61,e:"A strong morning routine sets the tone for the day.",ar:"روتين الصبح القوي بيحدد يومك."},
-{id:62,e:"Night is the best time for deep focus.",ar:"الليل أفضل وقت للتركيز العميق."},
-{id:63,e:"Organizing your room improves your mindset.",ar:"تنظيم غرفتك يحسن حالتك الذهنية."},
-{id:64,e:"Closing doors behind you means moving forward.",ar:"قفل الأبواب وراك معناه تقدم."},
-{id:65,e:"Opening new opportunities requires courage.",ar:"فتح فرص جديدة يحتاج شجاعة."},
-
-{id:66,e:"Opening your mind leads to growth.",ar:"فتح عقلك يؤدي للنمو."},
-{id:67,e:"Closing distractions increases productivity.",ar:"تقليل المشتتات يزيد الإنتاجية."},
-{id:68,e:"Moving forward is better than staying stuck.",ar:"التقدم أفضل من الثبات."},
-{id:69,e:"Trying again is the key to improvement.",ar:"المحاولة مرة تانية مفتاح التطور."},
-{id:70,e:"Helping others builds strong relationships.",ar:"مساعدة الآخرين تبني علاقات قوية."},
-
-{id:71,e:"A company grows with strong leadership.",ar:"الشركة تنمو بقيادة قوية."},
-{id:72,e:"A good product solves real problems.",ar:"المنتج الجيد يحل مشاكل حقيقية."},
-{id:73,e:"Great service creates loyal customers.",ar:"الخدمة الممتازة تخلق عملاء دائمين."},
-{id:74,e:"Meetings should focus on results.",ar:"الاجتماعات لازم تركز على النتائج."},
-{id:75,e:"A good deal benefits all parties.",ar:"الصفقة الجيدة تفيد كل الأطراف."},
-
-{id:76,e:"Marketing campaigns need clear strategy.",ar:"الحملات التسويقية تحتاج استراتيجية واضحة."},
-{id:77,e:"Strong offers increase conversions.",ar:"العروض القوية ترفع التحويلات."},
-{id:78,e:"Leads are the starting point of sales.",ar:"العملاء المحتملين بداية البيع."},
-{id:79,e:"Sales reflect your strategy effectiveness.",ar:"المبيعات تعكس قوة استراتيجيتك."},
-{id:80,e:"Reach determines your market impact.",ar:"الوصول بيحدد تأثيرك في السوق."},
-
-{id:81,e:"Protecting capital is the first rule in trading.",ar:"حماية رأس المال أول قاعدة في التداول."},
-{id:82,e:"Managing risk is more important than chasing profit.",ar:"إدارة المخاطر أهم من الربح."},
-{id:83,e:"High reward requires calculated risk.",ar:"العائد العالي يحتاج مخاطرة محسوبة."},
-{id:84,e:"Smart trading depends on discipline.",ar:"التداول الذكي يعتمد على الانضباط."},
-{id:85,e:"Following the trend increases success chances.",ar:"اتباع الاتجاه يزيد فرص النجاح."},
-
-{id:86,e:"Your passport is your key to the world.",ar:"جواز السفر مفتاحك للعالم."},
-{id:87,e:"Packing your bag wisely saves time.",ar:"تجهيز شنطتك صح بيوفر وقت."},
-{id:88,e:"A map helps you find the right direction.",ar:"الخريطة تساعدك توصل للاتجاه الصح."},
-{id:89,e:"Taking a taxi can save effort.",ar:"ركوب تاكسي ممكن يوفر مجهود."},
-{id:90,e:"Reservations guarantee your place.",ar:"الحجز يضمن مكانك."},
-
-{id:91,e:"Energy is the fuel of productivity.",ar:"الطاقة هي وقود الإنتاجية."},
-{id:92,e:"Your mindset defines your results.",ar:"عقليتك بتحدد نتائجك."},
-{id:93,e:"Taking action beats overthinking.",ar:"التنفيذ أفضل من التفكير الزائد."},
-{id:94,e:"A clear vision guides your decisions.",ar:"الرؤية الواضحة توجه قراراتك."},
-{id:95,e:"Progress is better than perfection.",ar:"التقدم أفضل من الكمال."},
-
-{id:96,e:"Being strong helps you face challenges.",ar:"القوة تساعدك تواجه التحديات."},
-{id:97,e:"Working smart saves time and effort.",ar:"العمل بذكاء يوفر وقت ومجهود."},
-{id:98,e:"Speed matters in competitive markets.",ar:"السرعة مهمة في الأسواق التنافسية."},
-{id:99,e:"Keeping things simple improves clarity.",ar:"البساطة تحسن الوضوح."},
-{id:100,e:"Being ready gives you an advantage.",ar:"الجاهزية تعطيك ميزة."}
 ];
 
-let currentCat="All";
+const list = document.getElementById("list");
 
-function savedList(){
-  return JSON.parse(localStorage.getItem("savedWords")||"[]");
-}
+list.innerHTML = words.map(x => `
+<div class="card">
+  <div class="word">#${x.id} - ${x.w}</div>
+  <div>المعنى: ${x.m}</div>
+  <div class="en">${x.e}</div>
+  <div class="ar">${x.ar}</div>
+</div>
+`).join("");
 
-function drawFilters(){
-  const cats=["All",...new Set(words.map(x=>x.cat))];
-  filters.innerHTML=cats.map(c=>`
-    <button class="${c===currentCat?'active':''}" onclick="setCat('${c}')">${c}</button>
-  `).join("");
-}
-
-function setCat(c){
-  currentCat=c;
-  drawFilters();
-  render();
-}
-
-function render(){
-  const q=search.value.toLowerCase().trim();
-  const saved=savedList();
-
-  const filtered=words.filter(x=>{
-    return (currentCat==="All"||x.cat===currentCat) &&
-    (x.w.toLowerCase().includes(q) || x.m.includes(q));
-  });
-
-  list.innerHTML=filtered.map(x=>`
-    <div class="card">
-      <div class="row">
-        <div>
-          <div class="id">#${String(x.id).padStart(3,"0")}</div>
-          <div class="word">${x.w}</div>
-        </div>
-        <div class="save ${saved.includes(x.id)?'saved':''}" onclick="toggleSave(${x.id})">★</div>
-      </div>
-
-      <div class="tag">${x.cat}</div>
-      <div class="pron">النطق: ${x.p}</div>
-      <div class="meaning">المعنى: ${x.m}</div>
-
-      <div class="example">
-        <div class="example-en">${x.e}</div>
-        <div class="example-ar">${x.ar}</div>
-      </div>
-    </div>
-  `).join("");
-
-  const percent=Math.round((saved.length/words.length)*100);
-  pText.innerText=`${saved.length}/${words.length} - ${percent}%`;
-  pBar.style.width=percent+"%";
-}
-
-function toggleSave(id){
-  let saved=savedList();
-  saved.includes(id) ? saved=saved.filter(x=>x!==id) : saved.push(id);
-  localStorage.setItem("savedWords",JSON.stringify(saved));
-  render();
-}
-
-drawFilters();
-render();
 </script>
 
 </body>
