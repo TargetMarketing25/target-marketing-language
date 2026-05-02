@@ -3,95 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>645 Words</title>
+<title>645 Words - Target Marketing Language</title>
 
 <style>
-body {
+*{box-sizing:border-box}
+body{
   margin:0;
-  background:#050505;
-  color:white;
-  font-family:Arial;
-  padding:20px;
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at top,rgba(212,175,55,.14),transparent 28%),
+    #050505;
+  color:#fff;
+  padding:16px;
 }
-.card {
-  background:#111;
-  border:1px solid #333;
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:12px;
+.app{max-width:560px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.back{background:#111;border:1px solid #333;color:white;padding:10px 14px;border-radius:14px;cursor:pointer}
+.title{direction:ltr;text-align:left}
+.title h1{margin:0;color:#ffd700;font-size:24px}
+.title p{margin:5px 0 0;color:#aaa}
+.progress{background:#111;border:1px solid #222;padding:13px;border-radius:18px;margin-bottom:14px}
+.progress-text{display:flex;justify-content:space-between;margin-bottom:8px;color:#ccc}
+.bar{height:8px;background:#222;border-radius:999px;overflow:hidden}
+.fill{height:100%;width:0%;background:linear-gradient(90deg,#ffd700,#d4af37)}
+.search input{width:100%;padding:14px;border-radius:14px;border:1px solid #333;background:#111;color:#fff;margin-bottom:12px;font-size:15px}
+.filters{display:flex;gap:7px;overflow-x:auto;margin-bottom:14px;padding-bottom:6px}
+.filters button{background:#111;border:1px solid #333;color:#ccc;padding:9px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.filters .active{background:#ffd700;color:#111;font-weight:bold}
+.card{background:#111;border:1px solid #252525;border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 16px 35px rgba(0,0,0,.35)}
+.row{display:flex;justify-content:space-between;align-items:flex-start}
+.id{color:#ffd700;font-size:13px;font-weight:bold;direction:ltr}
+.word{font-size:24px;font-weight:900;direction:ltr;text-align:left}
+.save{font-size:24px;color:#666;cursor:pointer}
+.saved{color:#ffd700}
+.tag{display:inline-block;margin-top:8px;color:#ffd700;font-size:12px;border:1px solid rgba(212,175,55,.25);padding:5px 9px;border-radius:999px}
+.pron{margin-top:8px;color:#aaa}
+.meaning{margin-top:6px;color:#fff;font-size:16px}
+
+.example{
+  margin-top:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:10px;
 }
-.word {
-  font-size:20px;
-  font-weight:bold;
-}
-.en {
+
+.example-en{
   direction:ltr;
-  margin-top:8px;
+  text-align:left;
+  color:#ddd;
+  font-size:14px;
+  line-height:1.6;
 }
-.ar {
+
+.example-ar{
+  direction:rtl;
+  text-align:right;
   color:#d4af37;
+  margin-top:7px;
+  font-size:14px;
+  line-height:1.7;
 }
+
+.empty{text-align:center;color:#777;padding:30px}
 </style>
 </head>
 
 <body>
 
-<h1>645 Words - Premium</h1>
+<div class="app">
 
-<div id="list"></div>
+  <div class="top">
+    <button class="back" onclick="location.href='dashboard.html'">رجوع</button>
+    <div class="title">
+      <h1>645 Words</h1>
+      <p>American English System</p>
+    </div>
+  </div>
+
+  <div class="progress">
+    <div class="progress-text">
+      <span>تقدمك</span>
+      <span id="pText">0%</span>
+    </div>
+    <div class="bar"><div id="pBar" class="fill"></div></div>
+  </div>
+
+  <div class="search">
+    <input id="search" placeholder="Search word or meaning..." onkeyup="render()">
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+
+</div>
 
 <script>
+if(localStorage.getItem("loggedIn")!=="true"){
+  location.href="index.html";
+}
 
 const words = [
-{id:1,w:"Time",m:"وقت",p:"تايم",cat:"Life",e:"Time management is the foundation of success in business and life.",ar:"إدارة الوقت هي أساس النجاح في العمل والحياة."},
-{id:2,w:"Day",m:"يوم",p:"داي",cat:"Life",e:"Every day is a new chance to improve your skills.",ar:"كل يوم هو فرصة جديدة لتطوير مهاراتك."},
-{id:3,w:"Week",m:"أسبوع",p:"ويك",cat:"Life",e:"Planning your week helps you stay productive and focused.",ar:"تخطيط الأسبوع يساعدك تكون منتج ومركز."},
-{id:4,w:"Month",m:"شهر",p:"منث",cat:"Life",e:"This month we aim to achieve higher results.",ar:"هذا الشهر نسعى لتحقيق نتائج أعلى."},
-{id:5,w:"Year",m:"سنة",p:"يير",cat:"Life",e:"This year is full of opportunities for growth.",ar:"هذه السنة مليئة بفرص النمو."},
+{id:1,cat:"Daily Life",w:"Time",p:"تايم",m:"وقت",e:"Time is very important in life.",ar:"الوقت مهم جدًا في الحياة."},
+{id:2,cat:"Daily Life",w:"Day",p:"داي",m:"يوم",e:"Today is a new day.",ar:"اليوم هو يوم جديد."},
+{id:3,cat:"Daily Life",w:"Week",p:"ويك",m:"أسبوع",e:"This week is very busy.",ar:"هذا الأسبوع مزدحم جدًا."},
+{id:4,cat:"Daily Life",w:"Month",p:"منث",m:"شهر",e:"This month is full of progress.",ar:"هذا الشهر مليء بالتقدم."},
+{id:5,cat:"Daily Life",w:"Year",p:"يير",m:"سنة",e:"This year will be better.",ar:"هذه السنة ستكون أفضل."},
 
-{id:6,w:"Home",m:"منزل",p:"هوم",cat:"Life",e:"A stable home environment supports your success.",ar:"البيئة المنزلية المستقرة تدعم نجاحك."},
-{id:7,w:"Family",m:"عائلة",p:"فاميلي",cat:"Life",e:"Your family can be your strongest support system.",ar:"عائلتك ممكن تكون أقوى دعم ليك."},
-{id:8,w:"Friend",m:"صديق",p:"فريند",cat:"Life",e:"Choosing the right friends impacts your future.",ar:"اختيار الأصدقاء الصح بيأثر على مستقبلك."},
-{id:9,w:"Food",m:"طعام",p:"فود",cat:"Life",e:"Healthy food improves your performance.",ar:"الأكل الصحي يحسن أدائك."},
-{id:10,w:"Water",m:"ماء",p:"ووتر",cat:"Life",e:"Drinking water keeps your energy high.",ar:"شرب الماء يحافظ على طاقتك."},
+{id:6,cat:"Daily Life",w:"Home",p:"هوم",m:"منزل",e:"I am going home now.",ar:"أنا ذاهب إلى المنزل الآن."},
+{id:7,cat:"Daily Life",w:"Family",p:"فاميلي",m:"عائلة",e:"My family supports me.",ar:"عائلتي تدعمني."},
+{id:8,cat:"Daily Life",w:"Friend",p:"فريند",m:"صديق",e:"He is my best friend.",ar:"هو أفضل صديق لي."},
+{id:9,cat:"Daily Life",w:"Food",p:"فود",m:"طعام",e:"The food tastes good.",ar:"الطعام طعمه جيد."},
+{id:10,cat:"Daily Life",w:"Water",p:"ووتر",m:"ماء",e:"Drink enough water every day.",ar:"اشرب كمية كافية من الماء يوميًا."},
 
-{id:11,w:"Phone",m:"هاتف",p:"فون",cat:"Tech",e:"Your phone can be a powerful business tool.",ar:"موبايلك ممكن يكون أداة قوية في البزنس."},
-{id:12,w:"Car",m:"سيارة",p:"كار",cat:"Life",e:"A reliable car saves time and effort.",ar:"سيارة مناسبة بتوفر وقت ومجهود."},
-{id:13,w:"Road",m:"طريق",p:"رود",cat:"Life",e:"Every road teaches you something new.",ar:"كل طريق بيعلمك حاجة جديدة."},
-{id:14,w:"Book",m:"كتاب",p:"بوك",cat:"Learning",e:"Reading books expands your mindset.",ar:"الكتب توسع عقليتك."},
-{id:15,w:"Work",m:"عمل",p:"ورك",cat:"Business",e:"Consistent work leads to long-term success.",ar:"العمل المستمر بيؤدي لنجاح طويل المدى."},
+{id:11,cat:"Daily Life",w:"Phone",p:"فون",m:"هاتف",e:"My phone is on the table.",ar:"هاتفي على الطاولة."},
+{id:12,cat:"Daily Life",w:"Car",p:"كار",m:"سيارة",e:"My car is clean.",ar:"سيارتي نظيفة."},
+{id:13,cat:"Daily Life",w:"Road",p:"رود",m:"طريق",e:"The road is long.",ar:"الطريق طويل."},
+{id:14,cat:"Daily Life",w:"Book",p:"بوك",m:"كتاب",e:"This book is useful.",ar:"هذا الكتاب مفيد."},
+{id:15,cat:"Daily Life",w:"Work",p:"ورك",m:"عمل",e:"I go to work every day.",ar:"أذهب إلى العمل كل يوم."},
 
-{id:16,w:"Go",m:"يذهب",p:"جو",cat:"Verb",e:"You must go forward even when it's hard.",ar:"لازم تتحرك للأمام حتى لو صعب."},
-{id:17,w:"Come",m:"يأتي",p:"كم",cat:"Verb",e:"Opportunities come to those who are ready.",ar:"الفرص بتيجي للي مستعدين."},
-{id:18,w:"Start",m:"يبدأ",p:"ستارت",cat:"Verb",e:"Starting is the most important step.",ar:"البداية أهم خطوة."},
-{id:19,w:"Stop",m:"يتوقف",p:"ستوب",cat:"Verb",e:"Stop wasting your time on distractions.",ar:"بلاش تضيع وقتك في المشتتات."},
-{id:20,w:"Learn",m:"يتعلم",p:"ليرن",cat:"Learning",e:"Learning new skills increases your value.",ar:"تعلم مهارات جديدة يزود قيمتك."},
+{id:16,cat:"Basic Verbs",w:"Go",p:"جو",m:"يذهب",e:"I go to work every day.",ar:"أذهب إلى العمل كل يوم."},
+{id:17,cat:"Basic Verbs",w:"Come",p:"كم",m:"يأتي",e:"Come here, please.",ar:"تعال إلى هنا من فضلك."},
+{id:18,cat:"Basic Verbs",w:"Start",p:"ستارت",m:"يبدأ",e:"Start your day with energy.",ar:"ابدأ يومك بطاقة."},
+{id:19,cat:"Basic Verbs",w:"Stop",p:"ستوب",m:"يتوقف",e:"Stop wasting your time.",ar:"توقف عن إضاعة وقتك."},
+{id:20,cat:"Basic Verbs",w:"Learn",p:"ليرن",m:"يتعلم",e:"I learn English every day.",ar:"أتعلم الإنجليزية كل يوم."},
 
-{id:21,w:"Teach",m:"يعلّم",p:"تيتش",cat:"Learning",e:"Teaching others strengthens your knowledge.",ar:"تعليم الآخرين يقوي معرفتك."},
-{id:22,w:"Build",m:"يبني",p:"بيلد",cat:"Business",e:"Building your future requires effort.",ar:"بناء مستقبلك محتاج مجهود."},
-{id:23,w:"Create",m:"ينشئ",p:"كرييت",cat:"Marketing",e:"Creating content opens new income streams.",ar:"صناعة المحتوى تفتح مصادر دخل."},
-{id:24,w:"Grow",m:"ينمو",p:"جرو",cat:"Growth",e:"Growth comes from consistency.",ar:"النمو بييجي من الاستمرارية."},
-{id:25,w:"Win",m:"يفوز",p:"وين",cat:"Success",e:"Winning is the result of discipline.",ar:"الفوز نتيجة الانضباط."},
+{id:21,cat:"Basic Verbs",w:"Teach",p:"تيتش",m:"يعلّم",e:"Teach others what you know.",ar:"علّم الآخرين ما تعرفه."},
+{id:22,cat:"Basic Verbs",w:"Build",p:"بيلد",m:"يبني",e:"Build your future step by step.",ar:"ابنِ مستقبلك خطوة بخطوة."},
+{id:23,cat:"Basic Verbs",w:"Create",p:"كرييت",m:"ينشئ",e:"Create useful content every day.",ar:"أنشئ محتوى مفيد يوميًا."},
+{id:24,cat:"Basic Verbs",w:"Grow",p:"جرو",m:"ينمو",e:"Grow your skills every week.",ar:"طوّر مهاراتك كل أسبوع."},
+{id:25,cat:"Basic Verbs",w:"Win",p:"وين",m:"يفوز",e:"You can win with discipline.",ar:"يمكنك الفوز بالانضباط."},
 
-{id:26,w:"Read",m:"يقرأ",p:"ريد",cat:"Learning",e:"Reading daily sharpens your thinking.",ar:"القراءة اليومية تقوي التفكير."},
-{id:27,w:"Write",m:"يكتب",p:"رايت",cat:"Learning",e:"Writing goals makes them clear.",ar:"كتابة الأهداف توضحها."},
-{id:28,w:"Speak",m:"يتحدث",p:"سبيك",cat:"Communication",e:"Speaking confidently builds presence.",ar:"الكلام بثقة يبني حضور."},
-{id:29,w:"Listen",m:"يستمع",p:"ليسن",cat:"Communication",e:"Listening helps you understand better.",ar:"الاستماع يخليك تفهم أكتر."},
-{id:30,w:"Ask",m:"يسأل",p:"آسك",cat:"Communication",e:"Asking questions improves decisions.",ar:"الأسئلة تحسن قراراتك."}
-
+{id:26,cat:"Basic Verbs",w:"Read",p:"ريد",m:"يقرأ",e:"Read one page every day.",ar:"اقرأ صفحة واحدة يوميًا."},
+{id:27,cat:"Basic Verbs",w:"Write",p:"رايت",m:"يكتب",e:"Write your goals clearly.",ar:"اكتب أهدافك بوضوح."},
+{id:28,cat:"Basic Verbs",w:"Speak",p:"سبيك",m:"يتحدث",e:"Speak English with confidence.",ar:"تحدث الإنجليزية بثقة."},
+{id:29,cat:"Basic Verbs",w:"Listen",p:"ليسن",m:"يستمع",e:"Listen carefully before you answer.",ar:"استمع جيدًا قبل أن تجيب."},
+{id:30,cat:"Basic Verbs",w:"Ask",p:"آسك",m:"يسأل",e:"Ask smart questions.",ar:"اطرح أسئلة ذكية."}
 ];
 
-const list = document.getElementById("list");
+let currentCat="All";
 
-list.innerHTML = words.map(x => `
-<div class="card">
-  <div class="word">#${x.id} - ${x.w}</div>
-  <div>المعنى: ${x.m}</div>
-  <div class="en">${x.e}</div>
-  <div class="ar">${x.ar}</div>
-</div>
-`).join("");
+function savedList(){
+  return JSON.parse(localStorage.getItem("savedWords")||"[]");
+}
 
+function drawFilters(){
+  const cats=["All",...new Set(words.map(x=>x.cat))];
+  filters.innerHTML=cats.map(c=>`
+    <button class="${c===currentCat?'active':''}" onclick="setCat('${c}')">${c}</button>
+  `).join("");
+}
+
+function setCat(c){
+  currentCat=c;
+  drawFilters();
+  render();
+}
+
+function render(){
+  const q=search.value.toLowerCase().trim();
+  const saved=savedList();
+
+  const filtered=words.filter(x=>{
+    const byCat=currentCat==="All"||x.cat===currentCat;
+    const bySearch=
+      x.w.toLowerCase().includes(q) ||
+      x.m.includes(q) ||
+      x.cat.toLowerCase().includes(q) ||
+      (x.e && x.e.toLowerCase().includes(q)) ||
+      (x.ar && x.ar.includes(q));
+
+    return byCat&&bySearch;
+  });
+
+  list.innerHTML=filtered.length?filtered.map(x=>`
+    <div class="card">
+      <div class="row">
+        <div>
+          <div class="id">#${String(x.id).padStart(3,"0")}</div>
+          <div class="word">${x.w}</div>
+        </div>
+        <div class="save ${saved.includes(x.id)?'saved':''}" onclick="toggleSave(${x.id})">★</div>
+      </div>
+
+      <div class="tag">${x.cat}</div>
+      <div class="pron">النطق: ${x.p}</div>
+      <div class="meaning">المعنى: ${x.m}</div>
+
+      <div class="example">
+        <div class="example-en">${x.e}</div>
+        <div class="example-ar">${x.ar || ""}</div>
+      </div>
+    </div>
+  `).join(""):`<div class="empty">لا توجد نتائج</div>`;
+
+  const percent=Math.round((saved.length/words.length)*100);
+  pText.innerText=`${saved.length}/${words.length} - ${percent}%`;
+  pBar.style.width=percent+"%";
+}
+
+function toggleSave(id){
+  let saved=savedList();
+  if(saved.includes(id)){
+    saved=saved.filter(x=>x!==id);
+  }else{
+    saved.push(id);
+  }
+  localStorage.setItem("savedWords",JSON.stringify(saved));
+  render();
+}
+
+drawFilters();
+render();
 </script>
 
 </body>
