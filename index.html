@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Target Marketing Language</title>
-<meta name="theme-color" content="#050505" />
 
 <style>
 * {
@@ -16,8 +15,8 @@ body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
   background:
-    radial-gradient(circle at top, rgba(212,175,55,0.16), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(0,80,180,0.20), transparent 35%),
+    radial-gradient(circle at top, rgba(212,175,55,0.15), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0,80,180,0.15), transparent 40%),
     #050505;
   color: #fff;
   display: flex;
@@ -28,52 +27,43 @@ body {
 
 .login-card {
   width: 100%;
-  max-width: 440px;
+  max-width: 420px;
   background: linear-gradient(180deg, #171717, #0d0d0d);
   border-radius: 28px;
-  padding: 34px 26px 28px;
-  border: 1px solid rgba(212,175,55,0.30);
+  padding: 34px 24px 26px;
+  border: 1px solid rgba(212,175,55,0.25);
   box-shadow:
     0 30px 80px rgba(0,0,0,0.65),
-    0 0 35px rgba(212,175,55,0.08);
+    0 0 30px rgba(212,175,55,0.08);
   text-align: center;
 }
 
+/* 🔥 LOGO HERO */
 .logo-wrap {
-  width: 190px;
-  height: 190px;
-  margin: 0 auto 18px;
+  width: 100%;
+  margin: 0 auto 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 .logo-wrap img {
-  width: 230px;
-  max-height: 230px;
-  filter: drop-shadow(0 25px 40px rgba(0,0,0,0.7))
-          drop-shadow(0 0 25px rgba(212,175,55,0.25));
+  width: 280px;
+  max-width: 80%;
+  height: auto;
+  filter:
+    drop-shadow(0 30px 50px rgba(0,0,0,0.7))
+    drop-shadow(0 0 35px rgba(212,175,55,0.25));
 }
 
-h1 {
-  margin: 4px 0 10px;
-  font-size: 30px;
-  line-height: 1.2;
-  color: #fff;
-  direction: ltr;
-}
-
-.highlight {
-  color: #d4af37;
-}
-
+/* Subtitle */
 .subtitle {
   color: #d8d8d8;
   font-size: 15px;
-  line-height: 1.8;
-  margin: 0 0 28px;
+  margin: 10px 0 28px;
+  line-height: 1.7;
 }
 
+/* Form */
 .form {
   text-align: left;
   direction: ltr;
@@ -81,13 +71,13 @@ h1 {
 
 input {
   width: 100%;
-  padding: 16px;
-  margin-bottom: 13px;
-  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 14px;
   border: 1px solid #333;
   background: #111;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   outline: none;
 }
 
@@ -97,68 +87,54 @@ input::placeholder {
 
 input:focus {
   border-color: #d4af37;
-  box-shadow: 0 0 0 4px rgba(212,175,55,0.12);
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
 }
 
+/* Button */
 button {
   width: 100%;
-  padding: 16px;
-  margin-top: 4px;
+  padding: 15px;
   border: none;
-  border-radius: 15px;
+  border-radius: 14px;
   background: linear-gradient(135deg, #ffd700, #d4af37);
   color: #111;
-  font-size: 16px;
-  font-weight: 900;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.2s;
 }
 
 button:hover {
   transform: translateY(-1px);
 }
 
+/* Error */
 .error {
-  min-height: 20px;
   color: #ff4d4d;
-  margin-top: 12px;
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 13px;
 }
 
+/* Footer */
 .footer {
   margin-top: 20px;
-  color: #777;
   font-size: 12px;
+  color: #777;
 }
 
+/* 📱 Mobile */
 @media (max-width: 480px) {
-  .login-card {
-    padding: 28px 20px 24px;
-    border-radius: 24px;
-  }
 
-  .logo-wrap {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 14px;
+  .login-card {
+    padding: 26px 18px;
   }
 
   .logo-wrap img {
-    width: 145px;
-    max-height: 145px;
-  }
-
-  h1 {
-    font-size: 24px;
+    width: 230px;
   }
 
   .subtitle {
     font-size: 14px;
-  }
-
-  input, button {
-    font-size: 15px;
-    padding: 14px;
   }
 }
 </style>
@@ -168,16 +144,17 @@ button:hover {
 
 <div class="login-card">
 
+  <!-- 🔥 LOGO -->
   <div class="logo-wrap">
     <img src="logo.png" alt="Target Marketing Logo">
   </div>
 
-  <h1>Target Marketing <span class="highlight">Language</span></h1>
-
+  <!-- Subtitle -->
   <div class="subtitle">
     ابدأ تعلم اللغات بطريقة عملية ومنظمة
   </div>
 
+  <!-- Form -->
   <div class="form">
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
@@ -185,6 +162,7 @@ button:hover {
   </div>
 
   <div class="error" id="error"></div>
+
   <div class="footer">© Target Marketing Academy</div>
 
 </div>
