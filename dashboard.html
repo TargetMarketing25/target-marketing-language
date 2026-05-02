@@ -1,76 +1,257 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard - Target Marketing Language</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: Arial;
-  background: #050505;
-  color: white;
-  padding: 20px;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(212,175,55,.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(0,80,180,.18), transparent 38%),
+    #050505;
+  color: #fff;
+  padding: 18px;
 }
 
-.card {
+.app {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 22px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
   background: #111;
-  padding: 20px;
-  border-radius: 20px;
-  margin-bottom: 15px;
+  object-fit: contain;
+  padding: 6px;
+  border: 1px solid rgba(212,175,55,.25);
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.header-text p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.welcome-card,
+.language-card {
+  background: linear-gradient(180deg, #171717, #0b0b0b);
+  border: 1px solid rgba(212,175,55,.28);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: 0 25px 70px rgba(0,0,0,.55);
+  margin-bottom: 18px;
+}
+
+.welcome-card h2 {
+  margin: 0 0 8px;
+  color: #d4af37;
+}
+
+.welcome-card p {
+  margin: 0;
+  color: #ccc;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.language-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.language-title {
+  direction: ltr;
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffd700;
+}
+
+.status {
+  background: rgba(212,175,55,.12);
+  color: #d4af37;
+  border: 1px solid rgba(212,175,55,.35);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.modules {
+  display: grid;
+  gap: 12px;
 }
 
 .module {
-  background: #222;
-  padding: 15px;
-  border-radius: 15px;
-  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #111;
+  border: 1px solid #292929;
+  border-radius: 20px;
+  padding: 16px;
   cursor: pointer;
+  transition: .25s;
 }
 
-button {
-  padding: 10px;
-  border-radius: 10px;
-  background: #333;
-  color: white;
+.module:hover {
+  transform: translateY(-2px);
+  border-color: #d4af37;
+  background: #151515;
+}
+
+.module-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212,175,55,.12);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.module-content {
+  flex: 1;
+}
+
+.module-content h3 {
+  margin: 0;
+  font-size: 18px;
+  direction: ltr;
+  text-align: right;
+}
+
+.module-content p {
+  margin: 6px 0 0;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.arrow {
+  color: #d4af37;
+  font-size: 24px;
+  direction: ltr;
+}
+
+.coming {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.logout {
+  text-align: center;
+  margin: 24px 0 10px;
+}
+
+.logout button {
+  background: #202020;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 13px 22px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  body { padding: 14px; }
+  .header-text h1 { font-size: 19px; }
+  .language-title { font-size: 21px; }
+  .module { padding: 14px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h2>👋 أهلاً بك</h2>
-  <p>ابدأ التعلم</p>
-</div>
+<div class="app">
 
-<div class="card">
-  <h3>🇬🇧 English (US)</h3>
-
-  <div class="module" onclick="goWords()">
-    645 Words
+  <div class="header">
+    <img src="logo.png" class="logo" alt="Target Marketing Logo">
+    <div class="header-text">
+      <h1>Target Marketing Language</h1>
+      <p>منصة تعلم اللغات بطريقة عملية ومنظمة</p>
+    </div>
   </div>
 
-  <div class="module">
-    5000 Phrases (Coming Soon)
+  <div class="welcome-card">
+    <h2>أهلاً بك 👋</h2>
+    <p>
+      اختر اللغة وابدأ رحلتك التعليمية. البداية مع اللغة الإنجليزية،
+      وبعدها سيتم إضافة لغات جديدة داخل نفس المنصة.
+    </p>
   </div>
-</div>
 
-<button onclick="logout()">Logout</button>
+  <div class="language-card">
+    <div class="language-top">
+      <div class="language-title">🇬🇧 English (US)</div>
+      <div class="status">Active</div>
+    </div>
+
+    <div class="modules">
+      <div class="module" onclick="goWords()">
+        <div class="module-icon">📘</div>
+        <div class="module-content">
+          <h3>645 Essential Words</h3>
+          <p>تعلم أهم الكلمات الأساسية بطريقة منظمة</p>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="module coming">
+        <div class="module-icon">💬</div>
+        <div class="module-content">
+          <h3>5000 Common Phrases</h3>
+          <p>قريبًا — جمل عملية للمحادثات اليومية</p>
+        </div>
+        <div class="arrow">🔒</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logout">
+    <button onclick="logout()">تسجيل الخروج</button>
+  </div>
+
+</div>
 
 <script>
-if(localStorage.getItem("loggedIn")!=="true"){
-  location.href="index.html";
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "index.html";
 }
 
-function goWords(){
-  location.href="words.html";
+function goWords() {
+  window.location.href = "words.html";
 }
 
-function logout(){
+function logout() {
   localStorage.removeItem("loggedIn");
-  location.href="index.html";
+  window.location.href = "index.html";
 }
 </script>
 
