@@ -40,28 +40,9 @@ body{
 .pron{margin-top:8px;color:#aaa}
 .meaning{margin-top:6px;color:#fff;font-size:16px}
 
-.example{
-  margin-top:12px;
-  border-top:1px solid rgba(255,255,255,.08);
-  padding-top:10px;
-}
-
-.example-en{
-  direction:ltr;
-  text-align:left;
-  color:#ddd;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.example-ar{
-  direction:rtl;
-  text-align:right;
-  color:#d4af37;
-  margin-top:7px;
-  font-size:14px;
-  line-height:1.7;
-}
+.example{margin-top:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:10px}
+.example-en{direction:ltr;text-align:left;color:#ddd;font-size:14px}
+.example-ar{direction:rtl;text-align:right;color:#d4af37;margin-top:7px;font-size:14px}
 
 .empty{text-align:center;color:#777;padding:30px}
 </style>
@@ -102,12 +83,13 @@ if(localStorage.getItem("loggedIn")!=="true"){
 }
 
 const words = [
+
+/* ===== 1 → 30 ===== */
 {id:1,cat:"Daily Life",w:"Time",p:"تايم",m:"وقت",e:"Time is very important in life.",ar:"الوقت مهم جدًا في الحياة."},
 {id:2,cat:"Daily Life",w:"Day",p:"داي",m:"يوم",e:"Today is a new day.",ar:"اليوم هو يوم جديد."},
 {id:3,cat:"Daily Life",w:"Week",p:"ويك",m:"أسبوع",e:"This week is very busy.",ar:"هذا الأسبوع مزدحم جدًا."},
 {id:4,cat:"Daily Life",w:"Month",p:"منث",m:"شهر",e:"This month is full of progress.",ar:"هذا الشهر مليء بالتقدم."},
 {id:5,cat:"Daily Life",w:"Year",p:"يير",m:"سنة",e:"This year will be better.",ar:"هذه السنة ستكون أفضل."},
-
 {id:6,cat:"Daily Life",w:"Home",p:"هوم",m:"منزل",e:"I am going home now.",ar:"أنا ذاهب إلى المنزل الآن."},
 {id:7,cat:"Daily Life",w:"Family",p:"فاميلي",m:"عائلة",e:"My family supports me.",ar:"عائلتي تدعمني."},
 {id:8,cat:"Daily Life",w:"Friend",p:"فريند",m:"صديق",e:"He is my best friend.",ar:"هو أفضل صديق لي."},
@@ -131,12 +113,49 @@ const words = [
 {id:23,cat:"Basic Verbs",w:"Create",p:"كرييت",m:"ينشئ",e:"Create useful content every day.",ar:"أنشئ محتوى مفيد يوميًا."},
 {id:24,cat:"Basic Verbs",w:"Grow",p:"جرو",m:"ينمو",e:"Grow your skills every week.",ar:"طوّر مهاراتك كل أسبوع."},
 {id:25,cat:"Basic Verbs",w:"Win",p:"وين",m:"يفوز",e:"You can win with discipline.",ar:"يمكنك الفوز بالانضباط."},
-
 {id:26,cat:"Basic Verbs",w:"Read",p:"ريد",m:"يقرأ",e:"Read one page every day.",ar:"اقرأ صفحة واحدة يوميًا."},
 {id:27,cat:"Basic Verbs",w:"Write",p:"رايت",m:"يكتب",e:"Write your goals clearly.",ar:"اكتب أهدافك بوضوح."},
 {id:28,cat:"Basic Verbs",w:"Speak",p:"سبيك",m:"يتحدث",e:"Speak English with confidence.",ar:"تحدث الإنجليزية بثقة."},
 {id:29,cat:"Basic Verbs",w:"Listen",p:"ليسن",m:"يستمع",e:"Listen carefully before you answer.",ar:"استمع جيدًا قبل أن تجيب."},
-{id:30,cat:"Basic Verbs",w:"Ask",p:"آسك",m:"يسأل",e:"Ask smart questions.",ar:"اطرح أسئلة ذكية."}
+{id:30,cat:"Basic Verbs",w:"Ask",p:"آسك",m:"يسأل",e:"Ask smart questions.",ar:"اطرح أسئلة ذكية."},
+
+/* ===== 31 → 60 ===== */
+{id:31,cat:"Business",w:"Business",p:"بزنس",m:"عمل",e:"I want to grow my business.",ar:"أريد أن أطور عملي."},
+{id:32,cat:"Business",w:"Money",p:"ماني",m:"مال",e:"Money is important but not everything.",ar:"المال مهم لكنه ليس كل شيء."},
+{id:33,cat:"Business",w:"Market",p:"ماركت",m:"سوق",e:"The market is very competitive.",ar:"السوق تنافسي جدًا."},
+{id:34,cat:"Business",w:"Client",p:"كلاينت",m:"عميل",e:"The client is satisfied.",ar:"العميل راضٍ."},
+{id:35,cat:"Business",w:"Customer",p:"كستمر",m:"زبون",e:"The customer is happy.",ar:"الزبون سعيد."},
+
+{id:36,cat:"Business",w:"Sell",p:"سيل",m:"يبيع",e:"I sell products online.",ar:"أبيع منتجات عبر الإنترنت."},
+{id:37,cat:"Business",w:"Buy",p:"باي",m:"يشتري",e:"People buy what they trust.",ar:"الناس تشتري ما تثق به."},
+{id:38,cat:"Business",w:"Profit",p:"بروفيت",m:"ربح",e:"Profit is growing every month.",ar:"الأرباح تزيد كل شهر."},
+{id:39,cat:"Business",w:"Loss",p:"لوس",m:"خسارة",e:"We must avoid losses.",ar:"يجب أن نتجنب الخسائر."},
+{id:40,cat:"Business",w:"Price",p:"برايس",m:"سعر",e:"The price is reasonable.",ar:"السعر مناسب."},
+
+{id:41,cat:"Marketing",w:"Marketing",p:"ماركتنج",m:"تسويق",e:"Marketing is a powerful skill.",ar:"التسويق مهارة قوية."},
+{id:42,cat:"Marketing",w:"Content",p:"كونتنت",m:"محتوى",e:"Create valuable content.",ar:"أنشئ محتوى ذو قيمة."},
+{id:43,cat:"Marketing",w:"Audience",p:"أودينس",m:"جمهور",e:"Know your audience well.",ar:"اعرف جمهورك جيدًا."},
+{id:44,cat:"Marketing",w:"Brand",p:"براند",m:"علامة تجارية",e:"Build a strong brand.",ar:"ابنِ علامة تجارية قوية."},
+{id:45,cat:"Marketing",w:"Ad",p:"آد",m:"إعلان",e:"This ad is effective.",ar:"هذا الإعلان فعال."},
+
+{id:46,cat:"Travel",w:"Travel",p:"ترافل",m:"سفر",e:"I love to travel.",ar:"أحب السفر."},
+{id:47,cat:"Travel",w:"Airport",p:"ايربورت",m:"مطار",e:"The airport is crowded.",ar:"المطار مزدحم."},
+{id:48,cat:"Travel",w:"Flight",p:"فلايت",m:"رحلة طيران",e:"My flight is delayed.",ar:"رحلتي متأخرة."},
+{id:49,cat:"Travel",w:"Hotel",p:"هوتيل",m:"فندق",e:"The hotel is comfortable.",ar:"الفندق مريح."},
+{id:50,cat:"Travel",w:"Ticket",p:"تيكت",m:"تذكرة",e:"I bought a ticket.",ar:"اشتريت تذكرة."},
+
+{id:51,cat:"Self Dev",w:"Success",p:"سكسس",m:"نجاح",e:"Success needs effort.",ar:"النجاح يحتاج مجهود."},
+{id:52,cat:"Self Dev",w:"Goal",p:"جول",m:"هدف",e:"Set clear goals.",ar:"حدد أهداف واضحة."},
+{id:53,cat:"Self Dev",w:"Focus",p:"فوكس",m:"تركيز",e:"Focus on your goal.",ar:"ركز على هدفك."},
+{id:54,cat:"Self Dev",w:"Discipline",p:"ديسبلين",m:"انضباط",e:"Discipline is key.",ar:"الانضباط هو المفتاح."},
+{id:55,cat:"Self Dev",w:"Habit",p:"هابت",m:"عادة",e:"Build good habits.",ar:"ابنِ عادات جيدة."},
+
+{id:56,cat:"Tech",w:"Computer",p:"كمبيوتر",m:"حاسوب",e:"I use my computer daily.",ar:"أستخدم الحاسوب يوميًا."},
+{id:57,cat:"Tech",w:"Internet",p:"انترنت",m:"إنترنت",e:"The internet is fast.",ar:"الإنترنت سريع."},
+{id:58,cat:"Tech",w:"App",p:"آب",m:"تطبيق",e:"This app is useful.",ar:"هذا التطبيق مفيد."},
+{id:59,cat:"Tech",w:"System",p:"سيستم",m:"نظام",e:"The system works well.",ar:"النظام يعمل جيدًا."},
+{id:60,cat:"Tech",w:"Data",p:"داتا",m:"بيانات",e:"Data is very important.",ar:"البيانات مهمة جدًا."}
+
 ];
 
 let currentCat="All";
@@ -163,18 +182,11 @@ function render(){
   const saved=savedList();
 
   const filtered=words.filter(x=>{
-    const byCat=currentCat==="All"||x.cat===currentCat;
-    const bySearch=
-      x.w.toLowerCase().includes(q) ||
-      x.m.includes(q) ||
-      x.cat.toLowerCase().includes(q) ||
-      (x.e && x.e.toLowerCase().includes(q)) ||
-      (x.ar && x.ar.includes(q));
-
-    return byCat&&bySearch;
+    return (currentCat==="All"||x.cat===currentCat) &&
+    (x.w.toLowerCase().includes(q) || x.m.includes(q));
   });
 
-  list.innerHTML=filtered.length?filtered.map(x=>`
+  list.innerHTML=filtered.map(x=>`
     <div class="card">
       <div class="row">
         <div>
@@ -190,10 +202,10 @@ function render(){
 
       <div class="example">
         <div class="example-en">${x.e}</div>
-        <div class="example-ar">${x.ar || ""}</div>
+        <div class="example-ar">${x.ar}</div>
       </div>
     </div>
-  `).join(""):`<div class="empty">لا توجد نتائج</div>`;
+  `).join("");
 
   const percent=Math.round((saved.length/words.length)*100);
   pText.innerText=`${saved.length}/${words.length} - ${percent}%`;
@@ -202,11 +214,7 @@ function render(){
 
 function toggleSave(id){
   let saved=savedList();
-  if(saved.includes(id)){
-    saved=saved.filter(x=>x!==id);
-  }else{
-    saved.push(id);
-  }
+  saved.includes(id) ? saved=saved.filter(x=>x!==id) : saved.push(id);
   localStorage.setItem("savedWords",JSON.stringify(saved));
   render();
 }
