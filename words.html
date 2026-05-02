@@ -3,60 +3,265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Words</title>
+<title>645 Words - Target Marketing Language</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: Arial;
-  background: #050505;
-  color: white;
-  padding: 15px;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(212,175,55,.15), transparent 30%),
+    #050505;
+  color: #fff;
+  padding: 16px;
 }
 
-.card {
+.app {
+  max-width: 540px;
+  margin: auto;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 18px;
+}
+
+.back {
   background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.title {
+  text-align: left;
+  direction: ltr;
+}
+
+.title h1 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 22px;
+}
+
+.title p {
+  margin: 6px 0 0;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.search-box {
+  margin-bottom: 14px;
+}
+
+.search-box input {
+  width: 100%;
   padding: 15px;
-  border-radius: 15px;
+  border-radius: 16px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.progress {
+  background: linear-gradient(180deg, #171717, #0d0d0d);
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 14px;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  color: #ddd;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
-.word {
-  font-weight: bold;
+.bar {
+  height: 10px;
+  background: #222;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-button {
-  margin-top: 5px;
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(135deg, #ffd700, #d4af37);
+}
+
+.word-card {
+  background: linear-gradient(180deg, #171717, #0d0d0d);
+  border: 1px solid #292929;
+  border-radius: 22px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+}
+
+.word-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.word {
+  direction: ltr;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.save {
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.save.saved {
+  color: #ffd700;
+}
+
+.meaning {
+  margin-top: 8px;
+  color: #d4af37;
+  font-size: 15px;
+}
+
+.example {
+  direction: ltr;
+  text-align: left;
+  margin-top: 10px;
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .title h1 { font-size: 19px; }
+  .word { font-size: 20px; }
 }
 </style>
 </head>
 
 <body>
 
-<button onclick="location.href='dashboard.html'">رجوع</button>
+<div class="app">
 
-<div id="words"></div>
+  <div class="top">
+    <button class="back" onclick="location.href='dashboard.html'">رجوع</button>
+    <div class="title">
+      <h1>645 Essential Words</h1>
+      <p>American English System</p>
+    </div>
+  </div>
+
+  <div class="progress">
+    <div class="progress-text">
+      <span>تقدمك</span>
+      <span id="progressText">0%</span>
+    </div>
+    <div class="bar">
+      <div class="bar-fill" id="barFill"></div>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <input id="search" placeholder="Search word or meaning..." onkeyup="searchWords()">
+  </div>
+
+  <div id="wordsContainer"></div>
+
+</div>
 
 <script>
-const data = [
-{w:"Time",m:"وقت",e:"Time is important."},
-{w:"Work",m:"عمل",e:"I work every day."},
-{w:"Money",m:"مال",e:"Money is useful."}
-];
-
-function show(){
-  words.innerHTML="";
-  data.forEach(x=>{
-    words.innerHTML+=`
-    <div class="card">
-      <div class="word">${x.w}</div>
-      <div>${x.m}</div>
-      <div>${x.e}</div>
-    </div>`;
-  });
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "index.html";
 }
 
-show();
+const words = [
+  { word: "Time", meaning: "وقت", example: "Time is very important in life." },
+  { word: "Work", meaning: "عمل", example: "I work every day to improve myself." },
+  { word: "Money", meaning: "مال", example: "Money is a tool, not a goal." },
+  { word: "Growth", meaning: "نمو", example: "Personal growth takes time." },
+  { word: "Success", meaning: "نجاح", example: "Success comes from consistency." },
+  { word: "Market", meaning: "سوق", example: "The market is growing fast this year." },
+  { word: "Partner", meaning: "شريك", example: "I started a business with my partner." },
+  { word: "Goal", meaning: "هدف", example: "Set a clear goal for your future." },
+  { word: "Skill", meaning: "مهارة", example: "Learning a skill can change your life." },
+  { word: "Customer", meaning: "عميل", example: "The customer is always important." }
+];
+
+function getSaved() {
+  return JSON.parse(localStorage.getItem("savedWords") || "[]");
+}
+
+function updateProgress() {
+  const saved = getSaved();
+  const percent = Math.round((saved.length / words.length) * 100);
+  document.getElementById("progressText").innerText = percent + "%";
+  document.getElementById("barFill").style.width = percent + "%";
+}
+
+function displayWords(list) {
+  const container = document.getElementById("wordsContainer");
+  const saved = getSaved();
+  container.innerHTML = "";
+
+  list.forEach(item => {
+    const isSaved = saved.includes(item.word);
+
+    container.innerHTML += `
+      <div class="word-card">
+        <div class="word-top">
+          <div class="word">${item.word}</div>
+          <div class="save ${isSaved ? "saved" : ""}" onclick="toggleSave('${item.word}', this)">★</div>
+        </div>
+        <div class="meaning">${item.meaning}</div>
+        <div class="example">${item.example}</div>
+      </div>
+    `;
+  });
+
+  updateProgress();
+}
+
+function searchWords() {
+  const value = document.getElementById("search").value.toLowerCase();
+  const filtered = words.filter(w =>
+    w.word.toLowerCase().includes(value) ||
+    w.meaning.includes(value)
+  );
+  displayWords(filtered);
+}
+
+function toggleSave(word, el) {
+  let saved = getSaved();
+
+  if (saved.includes(word)) {
+    saved = saved.filter(w => w !== word);
+    el.classList.remove("saved");
+  } else {
+    saved.push(word);
+    el.classList.add("saved");
+  }
+
+  localStorage.setItem("savedWords", JSON.stringify(saved));
+  updateProgress();
+}
+
+displayWords(words);
 </script>
 
 </body>
