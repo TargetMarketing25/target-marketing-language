@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard - Target Marketing Language</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(212,175,55,0.15), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0,80,180,0.15), transparent 40%),
+    #050505;
+  color: #fff;
+  padding: 20px;
+}
+
+/* Container */
+.container {
+  max-width: 500px;
+  margin: auto;
+}
+
+/* Welcome */
+.welcome {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+/* Card */
+.card {
+  background: linear-gradient(180deg, #171717, #0d0d0d);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid rgba(212,175,55,0.25);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  margin-bottom: 20px;
+}
+
+/* English Header */
+.language-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: gold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Sub cards */
+.sub-card {
+  background: #111;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sub-card:hover {
+  transform: translateY(-2px);
+  border-color: gold;
+}
+
+.sub-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sub-desc {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+/* Button */
+.logout {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.logout button {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logout button:hover {
+  background: #333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Welcome -->
+  <div class="welcome">
+    👋 أهلاً بك في منصة تعلم اللغات
+  </div>
+
+  <!-- English Card -->
+  <div class="card">
+
+    <div class="language-title">
+      🇬🇧 English
+    </div>
+
+    <!-- 645 Words -->
+    <div class="sub-card" onclick="goWords()">
+      <div class="sub-title">645 Essential Words</div>
+      <div class="sub-desc">تعلم أهم الكلمات الأساسية</div>
+    </div>
+
+    <!-- 5000 Phrases -->
+    <div class="sub-card">
+      <div class="sub-title">5000 Common Phrases</div>
+      <div class="sub-desc">قريبًا 🔥</div>
+    </div>
+
+  </div>
+
+  <!-- Logout -->
+  <div class="logout">
+    <button onclick="logout()">تسجيل الخروج</button>
+  </div>
+
+</div>
+
+<script>
+// حماية الصفحة (لو مش عامل Login يرجعه)
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "index.html";
+}
+
+// Navigation
+function goWords() {
+  alert("هنا هنفتح صفحة الكلمات قريبًا 🔥");
+}
+
+// Logout
+function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
