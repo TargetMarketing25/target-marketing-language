@@ -19,7 +19,10 @@ color:#fff;
 padding:16px;
 }
 
-.app{max-width:560px;margin:auto}
+.app{
+max-width:560px;
+margin:auto;
+}
 
 .top{
 display:flex;
@@ -61,8 +64,62 @@ border-radius:14px;
 border:1px solid #333;
 background:#111;
 color:#fff;
-margin-bottom:14px;
+margin-bottom:12px;
 font-size:15px;
+}
+
+.actions{
+display:flex;
+gap:10px;
+margin-bottom:16px;
+}
+
+.filter-btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:14px;
+background:#111;
+color:#fff;
+border:1px solid #333;
+cursor:pointer;
+font-weight:bold;
+transition:.25s;
+}
+
+.filter-btn.active{
+background:#d4af37;
+color:#000;
+}
+
+.progress-box{
+background:#111;
+border:1px solid #333;
+padding:14px;
+border-radius:18px;
+margin-bottom:16px;
+}
+
+.progress-text{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+font-size:14px;
+color:#ddd;
+}
+
+.progress-bar{
+height:10px;
+background:#222;
+border-radius:999px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+background:linear-gradient(90deg,#d4af37,#ffd700);
+width:0%;
+transition:.3s;
 }
 
 .card{
@@ -72,6 +129,14 @@ border-radius:20px;
 padding:16px;
 margin-bottom:12px;
 box-shadow:0 16px 38px rgba(0,0,0,.32);
+transition:.25s;
+}
+
+.card.learned{
+border-color:#d4af37;
+background:
+linear-gradient(180deg,rgba(212,175,55,.14),rgba(10,10,10,.95));
+opacity:.92;
 }
 
 .id{
@@ -101,10 +166,29 @@ color:#999;
 font-size:12px;
 }
 
+.learn-btn{
+margin-top:14px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-weight:bold;
+background:#d4af37;
+color:#000;
+transition:.25s;
+}
+
+.learn-btn.learned{
+background:#1a1a1a;
+color:#ffd700;
+border:1px solid #d4af37;
+}
+
 .empty{
 text-align:center;
 color:#888;
-padding:30px 0;
+padding:40px 0;
 }
 </style>
 </head>
@@ -114,7 +198,10 @@ padding:30px 0;
 <div class="app">
 
 <div class="top">
-<button class="back" onclick="location.href='phrases.html'">رجوع</button>
+<button class="back" onclick="location.href='phrases.html'">
+رجوع
+</button>
+
 <div class="title">
 <h1 id="moduleTitle">Module</h1>
 <p id="moduleDesc">Real-Life English</p>
@@ -122,7 +209,32 @@ padding:30px 0;
 </div>
 
 <div class="search">
-<input id="search" placeholder="Search phrase..." onkeyup="render()">
+<input
+id="search"
+placeholder="Search phrase..."
+onkeyup="render()">
+</div>
+
+<div class="progress-box">
+
+<div class="progress-text">
+<span id="progressText">0 متعلم</span>
+<span id="totalCount">0</span>
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+</div>
+
+<div class="actions">
+<button
+class="filter-btn"
+id="filterBtn"
+onclick="toggleFilter()">
+إظهار اللي لسه متعلمتش
+</button>
 </div>
 
 <div id="list"></div>
@@ -132,84 +244,233 @@ padding:30px 0;
 <script src="phrases-data.js"></script>
 
 <script>
+
 if(localStorage.getItem("loggedIn")!=="true"){
 location.href="index.html";
 }
 
-const moduleName = localStorage.getItem("currentPhraseModule") || "real-life";
+const moduleName =
+localStorage.getItem("currentPhraseModule")
+|| "real-life";
 
 const moduleInfo = {
-  "real-life": {
-    title: "Module 1: Real-Life Situations",
-    desc: "1000 جملة — مواقف يومية حقيقية"
-  },
-  "daily": {
-    title: "Module 2: Daily Conversations",
-    desc: "500 جملة — محادثات يومية"
-  },
-  "restaurants": {
-    title: "Module 3: Restaurants & Cafes",
-    desc: "400 جملة — مطاعم وكافيهات"
-  },
-  "work": {
-    title: "Module 4: Work & Interviews",
-    desc: "600 جملة — شغل وإنترفيو"
-  },
-  "travel": {
-    title: "Module 5: Travel & Airport",
-    desc: "500 جملة — سفر ومطار"
-  },
-  "social": {
-    title: "Module 6: Social Media",
-    desc: "400 جملة — سوشيال ميديا"
-  },
-  "relationships": {
-    title: "Module 7: Relationships",
-    desc: "400 جملة — علاقات"
-  },
-  "business": {
-    title: "Module 8: Business English",
-    desc: "700 جملة — Business English"
-  },
-  "pronunciation": {
-    title: "Module 9: Pronunciation Tips",
-    desc: "500 جملة — نطق وأنماط كلام"
-  }
-};
 
-const currentInfo = moduleInfo[moduleName] || moduleInfo["real-life"];
-const currentData = phraseModules[moduleName] || [];
+"real-life":{
+title:"Module 1: Real-Life Situations",
+desc:"1000 جملة — مواقف يومية حقيقية"
+},
 
-document.getElementById("moduleTitle").innerText = currentInfo.title;
-document.getElementById("moduleDesc").innerText = currentInfo.desc;
+"daily":{
+title:"Module 2: Daily Conversations",
+desc:"500 جملة — محادثات يومية"
+},
 
-function render(){
-const q = document.getElementById("search").value.toLowerCase().trim();
+"restaurants":{
+title:"Module 3: Restaurants & Cafes",
+desc:"400 جملة — مطاعم وكافيهات"
+},
 
-const filtered = currentData.filter(item =>
-  item.en.toLowerCase().includes(q) ||
-  item.ar.includes(q) ||
-  item.note.includes(q)
-);
+"work":{
+title:"Module 4: Work & Interviews",
+desc:"600 جملة — شغل وإنترفيو"
+},
 
-const list = document.getElementById("list");
+"travel":{
+title:"Module 5: Travel & Airport",
+desc:"500 جملة — سفر ومطار"
+},
 
-if(filtered.length===0){
-  list.innerHTML = `<div class="empty">لا توجد نتائج</div>`;
-  return;
+"social":{
+title:"Module 6: Social Media",
+desc:"400 جملة — سوشيال ميديا"
+},
+
+"relationships":{
+title:"Module 7: Relationships",
+desc:"400 جملة — علاقات"
+},
+
+"business":{
+title:"Module 8: Business English",
+desc:"700 جملة — Business English"
+},
+
+"pronunciation":{
+title:"Module 9: Pronunciation Tips",
+desc:"500 جملة — نطق وأنماط كلام"
 }
 
-list.innerHTML = filtered.map(item => `
-  <div class="card">
-    <div class="id">#${String(item.id).padStart(3,"0")}</div>
-    <div class="en">${item.en}</div>
-    <div class="ar">${item.ar}</div>
-    <div class="note">${item.note}</div>
-  </div>
-`).join("");
+};
+
+const currentInfo =
+moduleInfo[moduleName]
+|| moduleInfo["real-life"];
+
+const currentData =
+phraseModules[moduleName]
+|| [];
+
+document.getElementById("moduleTitle").innerText =
+currentInfo.title;
+
+document.getElementById("moduleDesc").innerText =
+currentInfo.desc;
+
+document.getElementById("totalCount").innerText =
+currentData.length;
+
+const learnedKey =
+"learned_" + moduleName;
+
+let learned =
+JSON.parse(localStorage.getItem(learnedKey) || "[]");
+
+let showUnlearnedOnly = false;
+
+function toggleLearn(id){
+
+if(learned.includes(id)){
+
+learned = learned.filter(x=>x!==id);
+
+}else{
+
+learned.push(id);
+
+}
+
+localStorage.setItem(
+learnedKey,
+JSON.stringify(learned)
+);
+
+render();
+}
+
+function toggleFilter(){
+
+showUnlearnedOnly =
+!showUnlearnedOnly;
+
+document.getElementById("filterBtn")
+.classList.toggle("active");
+
+render();
+}
+
+function render(){
+
+const q =
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+let filtered = currentData.filter(item=>{
+
+const match =
+
+item.en.toLowerCase().includes(q) ||
+
+item.ar.includes(q) ||
+
+(item.note || "")
+.toLowerCase()
+.includes(q);
+
+if(showUnlearnedOnly){
+
+return match &&
+!learned.includes(item.id);
+
+}
+
+return match;
+
+});
+
+const list =
+document.getElementById("list");
+
+if(filtered.length===0){
+
+list.innerHTML =
+`<div class="empty">
+لا توجد نتائج
+</div>`;
+
+}else{
+
+list.innerHTML = filtered.map(item=>{
+
+const isLearned =
+learned.includes(item.id);
+
+return `
+
+<div class="card ${isLearned ? "learned" : ""}">
+
+<div class="id">
+#${String(item.id).padStart(3,"0")}
+</div>
+
+<div class="en">
+${item.en}
+</div>
+
+<div class="ar">
+${item.ar}
+</div>
+
+<div class="note">
+${item.note || ""}
+</div>
+
+<button
+class="learn-btn ${isLearned ? "learned" : ""}"
+onclick="toggleLearn(${item.id})"
+>
+
+${isLearned
+? "اتعلمتها ✅"
+: "تعلمتها ؟"}
+
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+updateProgress();
+
+}
+
+function updateProgress(){
+
+const count =
+learned.length;
+
+const percent =
+(currentData.length === 0)
+? 0
+: (count/currentData.length)*100;
+
+document.getElementById("progressText")
+.innerText =
+`${count} متعلم`;
+
+document.getElementById("progressFill")
+.style.width =
+percent + "%";
+
 }
 
 render();
+
 </script>
 
 </body>
