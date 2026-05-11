@@ -1,1 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phrase Module</title>
 
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:
+radial-gradient(circle at top,rgba(212,175,55,.14),transparent 28%),
+radial-gradient(circle at bottom right,rgba(0,80,180,.14),transparent 38%),
+#050505;
+color:#fff;
+padding:16px;
+}
+
+.app{max-width:560px;margin:auto}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:16px;
+}
+
+.back{
+background:#111;
+border:1px solid #333;
+color:#fff;
+padding:10px 14px;
+border-radius:14px;
+cursor:pointer;
+}
+
+.title{
+direction:ltr;
+text-align:left;
+}
+
+.title h1{
+margin:0;
+color:#ffd700;
+font-size:22px;
+}
+
+.title p{
+margin:5px 0 0;
+color:#aaa;
+font-size:13px;
+}
+
+.search input{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:1px solid #333;
+background:#111;
+color:#fff;
+margin-bottom:14px;
+font-size:15px;
+}
+
+.card{
+background:linear-gradient(180deg,#171717,#0d0d0d);
+border:1px solid #282828;
+border-radius:20px;
+padding:16px;
+margin-bottom:12px;
+box-shadow:0 16px 38px rgba(0,0,0,.32);
+}
+
+.id{
+color:#ffd700;
+font-size:12px;
+font-weight:bold;
+direction:ltr;
+}
+
+.en{
+direction:ltr;
+text-align:left;
+font-size:18px;
+font-weight:bold;
+margin-top:8px;
+}
+
+.ar{
+margin-top:10px;
+color:#ddd;
+line-height:1.7;
+}
+
+.note{
+margin-top:8px;
+color:#999;
+font-size:12px;
+}
+
+.empty{
+text-align:center;
+color:#888;
+padding:30px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="top">
+<button class="back" onclick="location.href='phrases.html'">رجوع</button>
+<div class="title">
+<h1 id="moduleTitle">Module</h1>
+<p id="moduleDesc">Real-Life English</p>
+</div>
+</div>
+
+<div class="search">
+<input id="search" placeholder="Search phrase..." onkeyup="render()">
+</div>
+
+<div id="list"></div>
+
+</div>
+
+<script>
+if(localStorage.getItem("loggedIn")!=="true"){
+location.href="index.html";
+}
+
+const moduleName = localStorage.getItem("currentPhraseModule") || "real-life";
+
+const modules = {
+  "real-life": {
+    title: "Module 1: Real-Life Situations",
+    desc: "1000 جملة — مواقف يومية حقيقية",
+    data: [
+      {id:1,en:"Can you help me, please?",ar:"ممكن تساعدني لو سمحت؟",note:"طلب مساعدة"},
+      {id:2,en:"I need some help.",ar:"أنا محتاج مساعدة.",note:"موقف يومي"},
+      {id:3,en:"I have a problem.",ar:"عندي مشكلة.",note:"شرح موقف"},
+      {id:4,en:"What should I do?",ar:"أعمل إيه؟",note:"طلب نصيحة"},
+      {id:5,en:"Please wait a moment.",ar:"استنى لحظة لو سمحت.",note:"طلب وقت"}
+    ]
+  },
+
+  "daily": {
+    title: "Module 2: Daily Conversations",
+    desc: "500 جملة — محادثات يومية",
+    data: [
+      {id:1,en:"Hello, how are you?",ar:"ازيك؟",note:"تحية"},
+      {id:2,en:"I'm fine, thank you.",ar:"أنا كويس، شكرًا.",note:"رد"},
+      {id:3,en:"Nice to meet you.",ar:"تشرفت بيك.",note:"أول مقابلة"},
+      {id:4,en:"Where are you now?",ar:"إنت فين دلوقتي؟",note:"سؤال مكان"},
+      {id:5,en:"See you later.",ar:"أشوفك بعدين.",note:"وداع"}
+    ]
+  },
+
+  "restaurants": {
+    title: "Module 3: Restaurants & Cafes",
+    desc: "400 جملة — مطاعم وكافيهات",
+    data: [
+      {id:1,en:"Can I see the menu, please?",ar:"ممكن أشوف المنيو؟",note:"طلب منيو"},
+      {id:2,en:"I would like a coffee.",ar:"عايز قهوة.",note:"طلب مشروب"},
+      {id:3,en:"Can I have the bill, please?",ar:"ممكن الحساب؟",note:"طلب الحساب"},
+      {id:4,en:"Is this table available?",ar:"الترابيزة دي فاضية؟",note:"حجز مكان"},
+      {id:5,en:"The food was delicious.",ar:"الأكل كان لذيذ.",note:"مدح"}
+    ]
+  },
+
+  "work": {
+    title: "Module 4: Work & Interviews",
+    desc: "600 جملة — شغل وإنترفيو",
+    data: [
+      {id:1,en:"I'm interested in this opportunity.",ar:"أنا مهتم بالفرصة دي.",note:"إنترفيو"},
+      {id:2,en:"I have experience in sales.",ar:"عندي خبرة في المبيعات.",note:"خبرة"},
+      {id:3,en:"When can I start?",ar:"أقدر أبدأ إمتى؟",note:"سؤال شغل"},
+      {id:4,en:"I can work under pressure.",ar:"أقدر أشتغل تحت ضغط.",note:"إنترفيو"},
+      {id:5,en:"Thank you for your time.",ar:"شكرًا على وقتك.",note:"ختام"}
+    ]
+  },
+
+  "travel": {
+    title: "Module 5: Travel & Airport",
+    desc: "500 جملة — سفر ومطار",
+    data: [
+      {id:1,en:"Where is the check-in counter?",ar:"فين كاونتر تسجيل الدخول؟",note:"مطار"},
+      {id:2,en:"I have a reservation.",ar:"عندي حجز.",note:"فندق"},
+      {id:3,en:"How much is the taxi?",ar:"التاكسي بكام؟",note:"مواصلات"},
+      {id:4,en:"Where is the gate?",ar:"فين البوابة؟",note:"مطار"},
+      {id:5,en:"I lost my bag.",ar:"شنطتي ضاعت.",note:"مشكلة"}
+    ]
+  },
+
+  "social": {
+    title: "Module 6: Social Media",
+    desc: "400 جملة — سوشيال ميديا",
+    data: [
+      {id:1,en:"Check out my new post.",ar:"شوف البوست الجديد بتاعي.",note:"سوشيال"},
+      {id:2,en:"Please like and share.",ar:"اعمل لايك وشير لو سمحت.",note:"تفاعل"},
+      {id:3,en:"Send me a message.",ar:"ابعتلي رسالة.",note:"رسائل"},
+      {id:4,en:"Follow me for more.",ar:"تابعني للمزيد.",note:"دعوة"},
+      {id:5,en:"What do you think?",ar:"إيه رأيك؟",note:"تفاعل"}
+    ]
+  },
+
+  "relationships": {
+    title: "Module 7: Relationships",
+    desc: "400 جملة — علاقات",
+    data: [
+      {id:1,en:"I really appreciate you.",ar:"أنا بقدرك جدًا.",note:"تقدير"},
+      {id:2,en:"I'm sorry.",ar:"أنا آسف.",note:"اعتذار"},
+      {id:3,en:"I trust you.",ar:"أنا بثق فيك.",note:"ثقة"},
+      {id:4,en:"Let's talk honestly.",ar:"خلينا نتكلم بصراحة.",note:"محادثة"},
+      {id:5,en:"I understand your feelings.",ar:"أنا فاهم مشاعرك.",note:"تفهم"}
+    ]
+  },
+
+  "business": {
+    title: "Module 8: Business English",
+    desc: "700 جملة — Business English",
+    data: [
+      {id:1,en:"Let's discuss the offer.",ar:"خلينا نناقش العرض.",note:"بيزنس"},
+      {id:2,en:"What is your budget?",ar:"ميزانيتك كام؟",note:"بيع"},
+      {id:3,en:"We can close the deal today.",ar:"نقدر نقفل الصفقة النهارده.",note:"تفاوض"},
+      {id:4,en:"This is a great investment.",ar:"ده استثمار ممتاز.",note:"بيزنس"},
+      {id:5,en:"I will send you the details.",ar:"هبعتلك التفاصيل.",note:"متابعة"}
+    ]
+  },
+
+  "pronunciation": {
+    title: "Module 9: Pronunciation Tips",
+    desc: "500 جملة — نطق وأنماط كلام",
+    data: [
+      {id:1,en:"Can you repeat that slowly?",ar:"ممكن تعيدها ببطء؟",note:"تدريب نطق"},
+      {id:2,en:"How do you pronounce this word?",ar:"بتنطق الكلمة دي إزاي؟",note:"سؤال نطق"},
+      {id:3,en:"Say it again, please.",ar:"قولها تاني لو سمحت.",note:"تكرار"},
+      {id:4,en:"Speak more clearly.",ar:"اتكلم أوضح.",note:"وضوح"},
+      {id:5,en:"I want to improve my pronunciation.",ar:"عايز أحسن النطق بتاعي.",note:"هدف"}
+    ]
+  }
+};
+
+const current = modules[moduleName] || modules["real-life"];
+document.getElementById("moduleTitle").innerText = current.title;
+document.getElementById("moduleDesc").innerText = current.desc;
+
+function render(){
+const q = document.getElementById("search").value.toLowerCase().trim();
+
+const filtered = current.data.filter(item =>
+  item.en.toLowerCase().includes(q) ||
+  item.ar.includes(q) ||
+  item.note.includes(q)
+);
+
+const list = document.getElementById("list");
+
+if(filtered.length===0){
+  list.innerHTML = `<div class="empty">لا توجد نتائج</div>`;
+  return;
+}
+
+list.innerHTML = filtered.map(item => `
+  <div class="card">
+    <div class="id">#${String(item.id).padStart(3,"0")}</div>
+    <div class="en">${item.en}</div>
+    <div class="ar">${item.ar}</div>
+    <div class="note">${item.note}</div>
+  </div>
+`).join("");
+}
+
+render();
+</script>
+
+</body>
+</html>
