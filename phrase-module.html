@@ -129,6 +129,8 @@ padding:30px 0;
 
 </div>
 
+<script src="phrases-data.js"></script>
+
 <script>
 if(localStorage.getItem("loggedIn")!=="true"){
 location.href="index.html";
@@ -136,124 +138,55 @@ location.href="index.html";
 
 const moduleName = localStorage.getItem("currentPhraseModule") || "real-life";
 
-const modules = {
+const moduleInfo = {
   "real-life": {
     title: "Module 1: Real-Life Situations",
-    desc: "1000 جملة — مواقف يومية حقيقية",
-    data: [
-      {id:1,en:"Can you help me, please?",ar:"ممكن تساعدني لو سمحت؟",note:"طلب مساعدة"},
-      {id:2,en:"I need some help.",ar:"أنا محتاج مساعدة.",note:"موقف يومي"},
-      {id:3,en:"I have a problem.",ar:"عندي مشكلة.",note:"شرح موقف"},
-      {id:4,en:"What should I do?",ar:"أعمل إيه؟",note:"طلب نصيحة"},
-      {id:5,en:"Please wait a moment.",ar:"استنى لحظة لو سمحت.",note:"طلب وقت"}
-    ]
+    desc: "1000 جملة — مواقف يومية حقيقية"
   },
-
   "daily": {
     title: "Module 2: Daily Conversations",
-    desc: "500 جملة — محادثات يومية",
-    data: [
-      {id:1,en:"Hello, how are you?",ar:"ازيك؟",note:"تحية"},
-      {id:2,en:"I'm fine, thank you.",ar:"أنا كويس، شكرًا.",note:"رد"},
-      {id:3,en:"Nice to meet you.",ar:"تشرفت بيك.",note:"أول مقابلة"},
-      {id:4,en:"Where are you now?",ar:"إنت فين دلوقتي؟",note:"سؤال مكان"},
-      {id:5,en:"See you later.",ar:"أشوفك بعدين.",note:"وداع"}
-    ]
+    desc: "500 جملة — محادثات يومية"
   },
-
   "restaurants": {
     title: "Module 3: Restaurants & Cafes",
-    desc: "400 جملة — مطاعم وكافيهات",
-    data: [
-      {id:1,en:"Can I see the menu, please?",ar:"ممكن أشوف المنيو؟",note:"طلب منيو"},
-      {id:2,en:"I would like a coffee.",ar:"عايز قهوة.",note:"طلب مشروب"},
-      {id:3,en:"Can I have the bill, please?",ar:"ممكن الحساب؟",note:"طلب الحساب"},
-      {id:4,en:"Is this table available?",ar:"الترابيزة دي فاضية؟",note:"حجز مكان"},
-      {id:5,en:"The food was delicious.",ar:"الأكل كان لذيذ.",note:"مدح"}
-    ]
+    desc: "400 جملة — مطاعم وكافيهات"
   },
-
   "work": {
     title: "Module 4: Work & Interviews",
-    desc: "600 جملة — شغل وإنترفيو",
-    data: [
-      {id:1,en:"I'm interested in this opportunity.",ar:"أنا مهتم بالفرصة دي.",note:"إنترفيو"},
-      {id:2,en:"I have experience in sales.",ar:"عندي خبرة في المبيعات.",note:"خبرة"},
-      {id:3,en:"When can I start?",ar:"أقدر أبدأ إمتى؟",note:"سؤال شغل"},
-      {id:4,en:"I can work under pressure.",ar:"أقدر أشتغل تحت ضغط.",note:"إنترفيو"},
-      {id:5,en:"Thank you for your time.",ar:"شكرًا على وقتك.",note:"ختام"}
-    ]
+    desc: "600 جملة — شغل وإنترفيو"
   },
-
   "travel": {
     title: "Module 5: Travel & Airport",
-    desc: "500 جملة — سفر ومطار",
-    data: [
-      {id:1,en:"Where is the check-in counter?",ar:"فين كاونتر تسجيل الدخول؟",note:"مطار"},
-      {id:2,en:"I have a reservation.",ar:"عندي حجز.",note:"فندق"},
-      {id:3,en:"How much is the taxi?",ar:"التاكسي بكام؟",note:"مواصلات"},
-      {id:4,en:"Where is the gate?",ar:"فين البوابة؟",note:"مطار"},
-      {id:5,en:"I lost my bag.",ar:"شنطتي ضاعت.",note:"مشكلة"}
-    ]
+    desc: "500 جملة — سفر ومطار"
   },
-
   "social": {
     title: "Module 6: Social Media",
-    desc: "400 جملة — سوشيال ميديا",
-    data: [
-      {id:1,en:"Check out my new post.",ar:"شوف البوست الجديد بتاعي.",note:"سوشيال"},
-      {id:2,en:"Please like and share.",ar:"اعمل لايك وشير لو سمحت.",note:"تفاعل"},
-      {id:3,en:"Send me a message.",ar:"ابعتلي رسالة.",note:"رسائل"},
-      {id:4,en:"Follow me for more.",ar:"تابعني للمزيد.",note:"دعوة"},
-      {id:5,en:"What do you think?",ar:"إيه رأيك؟",note:"تفاعل"}
-    ]
+    desc: "400 جملة — سوشيال ميديا"
   },
-
   "relationships": {
     title: "Module 7: Relationships",
-    desc: "400 جملة — علاقات",
-    data: [
-      {id:1,en:"I really appreciate you.",ar:"أنا بقدرك جدًا.",note:"تقدير"},
-      {id:2,en:"I'm sorry.",ar:"أنا آسف.",note:"اعتذار"},
-      {id:3,en:"I trust you.",ar:"أنا بثق فيك.",note:"ثقة"},
-      {id:4,en:"Let's talk honestly.",ar:"خلينا نتكلم بصراحة.",note:"محادثة"},
-      {id:5,en:"I understand your feelings.",ar:"أنا فاهم مشاعرك.",note:"تفهم"}
-    ]
+    desc: "400 جملة — علاقات"
   },
-
   "business": {
     title: "Module 8: Business English",
-    desc: "700 جملة — Business English",
-    data: [
-      {id:1,en:"Let's discuss the offer.",ar:"خلينا نناقش العرض.",note:"بيزنس"},
-      {id:2,en:"What is your budget?",ar:"ميزانيتك كام؟",note:"بيع"},
-      {id:3,en:"We can close the deal today.",ar:"نقدر نقفل الصفقة النهارده.",note:"تفاوض"},
-      {id:4,en:"This is a great investment.",ar:"ده استثمار ممتاز.",note:"بيزنس"},
-      {id:5,en:"I will send you the details.",ar:"هبعتلك التفاصيل.",note:"متابعة"}
-    ]
+    desc: "700 جملة — Business English"
   },
-
   "pronunciation": {
     title: "Module 9: Pronunciation Tips",
-    desc: "500 جملة — نطق وأنماط كلام",
-    data: [
-      {id:1,en:"Can you repeat that slowly?",ar:"ممكن تعيدها ببطء؟",note:"تدريب نطق"},
-      {id:2,en:"How do you pronounce this word?",ar:"بتنطق الكلمة دي إزاي؟",note:"سؤال نطق"},
-      {id:3,en:"Say it again, please.",ar:"قولها تاني لو سمحت.",note:"تكرار"},
-      {id:4,en:"Speak more clearly.",ar:"اتكلم أوضح.",note:"وضوح"},
-      {id:5,en:"I want to improve my pronunciation.",ar:"عايز أحسن النطق بتاعي.",note:"هدف"}
-    ]
+    desc: "500 جملة — نطق وأنماط كلام"
   }
 };
 
-const current = modules[moduleName] || modules["real-life"];
-document.getElementById("moduleTitle").innerText = current.title;
-document.getElementById("moduleDesc").innerText = current.desc;
+const currentInfo = moduleInfo[moduleName] || moduleInfo["real-life"];
+const currentData = phraseModules[moduleName] || [];
+
+document.getElementById("moduleTitle").innerText = currentInfo.title;
+document.getElementById("moduleDesc").innerText = currentInfo.desc;
 
 function render(){
 const q = document.getElementById("search").value.toLowerCase().trim();
 
-const filtered = current.data.filter(item =>
+const filtered = currentData.filter(item =>
   item.en.toLowerCase().includes(q) ||
   item.ar.includes(q) ||
   item.note.includes(q)
