@@ -255,7 +255,8 @@ location.href="index.html";
 }
 
 function openModule(name){
-alert("هندخل على: "+name+" قريب 🔥");
+  localStorage.setItem("currentPhraseModule", name);
+  window.location.href = "phrase-module.html";
 }
 </script>
 
