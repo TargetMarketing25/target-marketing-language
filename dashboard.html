@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dashboard - Target Marketing Language</title>
+<meta name="description" content="لوحة تحكم Target Marketing Language لتعلم الإنجليزي بطريقة عملية من خلال 800 كلمة و5000 جملة مقسمة Modules بشكل احترافي.">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="logo.png">
 
 <style>
 * { box-sizing: border-box; }
@@ -55,7 +58,9 @@ body {
 }
 
 .welcome-card,
-.language-card {
+.language-card,
+.about-card,
+.site-footer {
   background: linear-gradient(180deg, #171717, #0b0b0b);
   border: 1px solid rgba(212,175,55,.28);
   border-radius: 28px;
@@ -74,6 +79,49 @@ body {
   color: #ccc;
   line-height: 1.7;
   font-size: 14px;
+}
+
+.about-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.about-card:hover {
+  transform: translateY(-2px);
+  border-color: #d4af37;
+  background: #151515;
+}
+
+.about-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  background: rgba(212,175,55,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-content h3 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 18px;
+}
+
+.about-content p {
+  margin: 6px 0 0;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .language-top {
@@ -177,6 +225,53 @@ body {
   cursor: pointer;
   font-weight: bold;
 }
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-logo {
+  width: 90px;
+  max-width: 55%;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.site-footer strong {
+  display: block;
+  color: #ffd700;
+  margin-bottom: 6px;
+}
+
+.site-footer p {
+  color: #aaa;
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: #111;
+  background: linear-gradient(135deg,#ffd700,#d4af37);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-size: 12px;
+}
+
+.copy {
+  margin-top: 12px;
+  color: #666;
+  font-size: 12px;
+}
 </style>
 </head>
 
@@ -185,7 +280,7 @@ body {
 <div class="app">
 
   <div class="header">
-    <img src="logo.png" class="logo">
+    <img src="logo.png" class="logo" alt="Target Marketing Language Logo">
     <div class="header-text">
       <h1>Target Marketing Language</h1>
       <p>منصة تعلم اللغات بطريقة عملية ومنظمة</p>
@@ -197,7 +292,15 @@ body {
     <p>اختر اللغة وابدأ رحلتك التعليمية</p>
   </div>
 
-  <!-- English -->
+  <div class="about-card" onclick="goAbout()">
+    <div class="about-icon">ℹ️</div>
+    <div class="about-content">
+      <h3>About Target Marketing Language</h3>
+      <p>اعرف الموقع معمول ليه، وإزاي تذاكر صح، ومين Target Marketing Academy.</p>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
   <div class="language-card">
     <div class="language-top">
       <div class="language-title">🇬🇧 English</div>
@@ -214,18 +317,17 @@ body {
         <div class="arrow">›</div>
       </div>
 
-    <div class="module" onclick="goPhrases()">
+      <div class="module" onclick="goPhrases()">
         <div class="module-icon">💬</div>
         <div class="module-content">
           <h3>5000 Phrases</h3>
-          <p>أهم 5000 جُملة هتحتاجها في الإنجليزي </p>
+          <p>أهم 5000 جُملة هتحتاجها في الإنجليزي</p>
         </div>
         <div class="arrow">›</div>
       </div>
     </div>
   </div>
 
-  <!-- French -->
   <div class="language-card coming">
     <div class="language-top">
       <div class="language-title">🇫🇷 French</div>
@@ -233,7 +335,6 @@ body {
     </div>
   </div>
 
-  <!-- Italian -->
   <div class="language-card coming">
     <div class="language-top">
       <div class="language-title">🇮🇹 Italian</div>
@@ -241,7 +342,6 @@ body {
     </div>
   </div>
 
-  <!-- German -->
   <div class="language-card coming">
     <div class="language-top">
       <div class="language-title">🇩🇪 German</div>
@@ -249,13 +349,24 @@ body {
     </div>
   </div>
 
-  <!-- Russian -->
   <div class="language-card coming">
     <div class="language-top">
       <div class="language-title">🇷🇺 Russian</div>
       <div class="status">Coming Soon</div>
     </div>
   </div>
+
+  <footer class="site-footer">
+    <img src="logo.png" class="footer-logo" alt="Target Marketing Academy Logo">
+    <strong>Target Marketing Academy</strong>
+    <p>تعلم — مارس — علم</p>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="https://t.me/TargetMarketing25" target="_blank">Telegram</a>
+      <a href="https://www.facebook.com/share/18UeeQks6w/" target="_blank">Facebook</a>
+    </div>
+    <div class="copy">© 2026 Target Marketing Academy. All Rights Reserved.</div>
+  </footer>
 
   <div class="logout">
     <button onclick="logout()">تسجيل الخروج</button>
@@ -274,8 +385,12 @@ function goWords() {
 
 function goPhrases() {
   window.location.href = "phrases.html";
-}  
-  
+}
+
+function goAbout() {
+  window.location.href = "about.html";
+}
+
 function logout() {
   localStorage.removeItem("loggedIn");
   window.location.href = "index.html";
