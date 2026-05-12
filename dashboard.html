@@ -10,275 +10,46 @@
 
 <style>
 * { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(212,175,55,.18), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(0,80,180,.18), transparent 38%),
-    #050505;
-  color: #fff;
-  padding: 18px;
-}
-
-.app {
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 18px 0 22px;
-}
-
-.logo {
-  width: 70px;
-  height: 70px;
-  border-radius: 18px;
-  background: #111;
-  object-fit: contain;
-  padding: 6px;
-  border: 1px solid rgba(212,175,55,.25);
-}
-
-.header-text h1 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.header-text p {
-  margin: 6px 0 0;
-  font-size: 13px;
-  color: #aaa;
-}
-
-.welcome-card,
-.language-card,
-.about-card,
-.site-footer {
-  background: linear-gradient(180deg, #171717, #0b0b0b);
-  border: 1px solid rgba(212,175,55,.28);
-  border-radius: 28px;
-  padding: 22px;
-  box-shadow: 0 25px 70px rgba(0,0,0,.55);
-  margin-bottom: 18px;
-}
-
-.welcome-card h2 {
-  margin: 0 0 8px;
-  color: #d4af37;
-}
-
-.welcome-card p {
-  margin: 0;
-  color: #ccc;
-  line-height: 1.7;
-  font-size: 14px;
-}
-
-.about-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  cursor: pointer;
-  transition: .25s;
-}
-
-.about-card:hover {
-  transform: translateY(-2px);
-  border-color: #d4af37;
-  background: #151515;
-}
-
-.about-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
-  background: rgba(212,175,55,.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
-}
-
-.about-content {
-  flex: 1;
-}
-
-.about-content h3 {
-  margin: 0;
-  color: #ffd700;
-  font-size: 18px;
-}
-
-.about-content p {
-  margin: 6px 0 0;
-  color: #aaa;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.language-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
-
-.language-title {
-  direction: ltr;
-  font-size: 24px;
-  font-weight: 900;
-  color: #ffd700;
-}
-
-.status {
-  background: rgba(212,175,55,.12);
-  color: #d4af37;
-  border: 1px solid rgba(212,175,55,.35);
-  padding: 7px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.modules {
-  display: grid;
-  gap: 12px;
-}
-
-.module {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #111;
-  border: 1px solid #292929;
-  border-radius: 20px;
-  padding: 16px;
-  cursor: pointer;
-  transition: .25s;
-}
-
-.module:hover {
-  transform: translateY(-2px);
-  border-color: #d4af37;
-  background: #151515;
-}
-
-.module-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(212,175,55,.12);
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.module-content {
-  flex: 1;
-}
-
-.module-content h3 {
-  margin: 0;
-  font-size: 18px;
-  direction: ltr;
-  text-align: right;
-}
-
-.module-content p {
-  margin: 6px 0 0;
-  color: #aaa;
-  font-size: 13px;
-}
-
-.arrow {
-  color: #d4af37;
-  font-size: 24px;
-  direction: ltr;
-}
-
-.coming {
-  opacity: .6;
-  cursor: not-allowed;
-}
-
-.logout {
-  text-align: center;
-  margin: 24px 0 10px;
-}
-
-.logout button {
-  background: #202020;
-  color: #fff;
-  border: 1px solid #333;
-  padding: 13px 22px;
-  border-radius: 14px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.site-footer {
-  text-align: center;
-  padding: 20px;
-}
-
-.footer-logo {
-  width: 90px;
-  max-width: 55%;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-.site-footer strong {
-  display: block;
-  color: #ffd700;
-  margin-bottom: 6px;
-}
-
-.site-footer p {
-  color: #aaa;
-  font-size: 13px;
-  margin: 0 0 12px;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.footer-links a {
-  color: #111;
-  background: linear-gradient(135deg,#ffd700,#d4af37);
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 999px;
-  padding: 9px 13px;
-  font-size: 12px;
-}
-
-.copy {
-  margin-top: 12px;
-  color: #666;
-  font-size: 12px;
-}
+body { margin: 0; min-height: 100vh; font-family: Arial, sans-serif; background: radial-gradient(circle at top, rgba(212,175,55,.18), transparent 28%), radial-gradient(circle at bottom right, rgba(0,80,180,.18), transparent 38%), #050505; color: #fff; padding: 18px; }
+.app { width: 100%; max-width: 520px; margin: 0 auto; }
+.header { display: flex; align-items: center; gap: 14px; margin: 18px 0 22px; }
+.logo { width: 70px; height: 70px; border-radius: 18px; background: #111; object-fit: contain; padding: 6px; border: 1px solid rgba(212,175,55,.25); }
+.header-text h1 { margin: 0; font-size: 22px; }
+.header-text p { margin: 6px 0 0; font-size: 13px; color: #aaa; }
+.welcome-card,.language-card,.about-card,.site-footer { background: linear-gradient(180deg, #171717, #0b0b0b); border: 1px solid rgba(212,175,55,.28); border-radius: 28px; padding: 22px; box-shadow: 0 25px 70px rgba(0,0,0,.55); margin-bottom: 18px; }
+.welcome-card h2 { margin: 0 0 8px; color: #d4af37; }
+.welcome-card p { margin: 0; color: #ccc; line-height: 1.7; font-size: 14px; }
+.about-card { display: flex; align-items: center; gap: 14px; cursor: pointer; transition: .25s; }
+.about-card:hover { transform: translateY(-2px); border-color: #d4af37; background: #151515; }
+.about-icon { width: 52px; height: 52px; border-radius: 18px; background: rgba(212,175,55,.12); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.about-content { flex: 1; }
+.about-content h3 { margin: 0; color: #ffd700; font-size: 18px; }
+.about-content p { margin: 6px 0 0; color: #aaa; font-size: 13px; line-height: 1.6; }
+.language-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.language-title { direction: ltr; font-size: 24px; font-weight: 900; color: #ffd700; }
+.status { background: rgba(212,175,55,.12); color: #d4af37; border: 1px solid rgba(212,175,55,.35); padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: bold; }
+.modules { display: grid; gap: 12px; }
+.module { display: flex; align-items: center; gap: 14px; background: #111; border: 1px solid #292929; border-radius: 20px; padding: 16px; cursor: pointer; transition: .25s; }
+.module:hover { transform: translateY(-2px); border-color: #d4af37; background: #151515; }
+.module-icon { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: rgba(212,175,55,.12); font-size: 22px; flex-shrink: 0; }
+.module-content { flex: 1; }
+.module-content h3 { margin: 0; font-size: 18px; direction: ltr; text-align: right; }
+.module-content p { margin: 6px 0 0; color: #aaa; font-size: 13px; }
+.arrow { color: #d4af37; font-size: 24px; direction: ltr; }
+.coming { opacity: .6; cursor: not-allowed; }
+.logout { text-align: center; margin: 24px 0 10px; }
+.logout button { background: #202020; color: #fff; border: 1px solid #333; padding: 13px 22px; border-radius: 14px; cursor: pointer; font-weight: bold; }
+.site-footer { text-align: center; padding: 20px; }
+.footer-logo { width: 90px; max-width: 55%; object-fit: contain; margin-bottom: 10px; }
+.site-footer strong { display: block; color: #ffd700; margin-bottom: 6px; }
+.site-footer p { color: #aaa; font-size: 13px; margin: 0 0 12px; }
+.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.footer-links a { color: #111; background: linear-gradient(135deg,#ffd700,#d4af37); text-decoration: none; font-weight: bold; border-radius: 999px; padding: 9px 13px; font-size: 12px; }
+.copy { margin-top: 12px; color: #666; font-size: 12px; }
 </style>
 </head>
-
 <body>
-
 <div class="app">
-
   <div class="header">
     <img src="logo.png" class="logo" alt="Target Marketing Language Logo">
     <div class="header-text">
@@ -306,55 +77,30 @@ body {
       <div class="language-title">🇬🇧 English</div>
       <div class="status">Active</div>
     </div>
-
     <div class="modules">
       <div class="module" onclick="goWords()">
         <div class="module-icon">📘</div>
         <div class="module-content">
-          <h3>Essential Words</h3>
-          <p>الكلمات الأساسية المهمة لبناء أساس قوي في اللغة</p>
+          <h3>800 Words</h3>
+          <p>أهم 800 كلمة شائعين في اللغة الإنجليزية</p>
         </div>
         <div class="arrow">›</div>
       </div>
-
       <div class="module" onclick="goPhrases()">
         <div class="module-icon">💬</div>
         <div class="module-content">
-          <h3>Practical Phrases</h3>
-          <p>جُمل عملية للحياة اليومية والشغل والسفر والتواصل</p>
+          <h3>5000 Phrases</h3>
+          <p>أهم 5000 جُملة هتحتاجها في الإنجليزي</p>
         </div>
         <div class="arrow">›</div>
       </div>
     </div>
   </div>
 
-  <div class="language-card coming">
-    <div class="language-top">
-      <div class="language-title">🇫🇷 French</div>
-      <div class="status">Coming Soon</div>
-    </div>
-  </div>
-
-  <div class="language-card coming">
-    <div class="language-top">
-      <div class="language-title">🇮🇹 Italian</div>
-      <div class="status">Coming Soon</div>
-    </div>
-  </div>
-
-  <div class="language-card coming">
-    <div class="language-top">
-      <div class="language-title">🇩🇪 German</div>
-      <div class="status">Coming Soon</div>
-    </div>
-  </div>
-
-  <div class="language-card coming">
-    <div class="language-top">
-      <div class="language-title">🇷🇺 Russian</div>
-      <div class="status">Coming Soon</div>
-    </div>
-  </div>
+  <div class="language-card coming"><div class="language-top"><div class="language-title">🇫🇷 French</div><div class="status">Coming Soon</div></div></div>
+  <div class="language-card coming"><div class="language-top"><div class="language-title">🇮🇹 Italian</div><div class="status">Coming Soon</div></div></div>
+  <div class="language-card coming"><div class="language-top"><div class="language-title">🇩🇪 German</div><div class="status">Coming Soon</div></div></div>
+  <div class="language-card coming"><div class="language-top"><div class="language-title">🇷🇺 Russian</div><div class="status">Coming Soon</div></div></div>
 
   <footer class="site-footer">
     <img src="logo.png" class="footer-logo" alt="Target Marketing Academy Logo">
@@ -368,34 +114,14 @@ body {
     <div class="copy">© 2026 Target Marketing Academy. All Rights Reserved.</div>
   </footer>
 
-  <div class="logout">
-    <button onclick="logout()">تسجيل الخروج</button>
-  </div>
-
+  <div class="logout"><button onclick="logout()">تسجيل الخروج</button></div>
 </div>
-
 <script>
-if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "index.html";
-}
-
-function goWords() {
-  window.location.href = "words.html";
-}
-
-function goPhrases() {
-  window.location.href = "phrases.html";
-}
-
-function goAbout() {
-  window.location.href = "about.html";
-}
-
-function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
-}
+if (localStorage.getItem("loggedIn") !== "true") { window.location.href = "index.html"; }
+function goWords() { window.location.href = "words.html"; }
+function goPhrases() { window.location.href = "phrases.html"; }
+function goAbout() { window.location.href = "about.html"; }
+function logout() { localStorage.removeItem("loggedIn"); window.location.href = "index.html"; }
 </script>
-
 </body>
 </html>
